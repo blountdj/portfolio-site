@@ -126,3 +126,18 @@
 }
 
 */
+
+
+.btn {
+    pointer-events: auto; /* Enables hover detection */
+    transition: background-color 0.25s ease;
+}
+
+.btn:hover {
+    /* Your hover styles */
+    background-color: var(--score-yellow);
+}
+
+.w-inline-block {
+    text-decoration: none;
+}

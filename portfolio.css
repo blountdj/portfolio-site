@@ -1,0 +1,14 @@
+.nav .next,
+.nav .prev {
+  stroke: #fff;
+
+}
+
+.item-card:hover {
+    transform: scale(1.05) translate(0, -15%);
+    border: 3px solid var(--lighter-green);
+}
+
+.item-card {
+    transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+}

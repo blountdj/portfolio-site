@@ -1,11 +1,20 @@
 
-
+/* Home */
 import { marqueeScrollEffect } from "./marquee.js";
 import { introTextEffect } from "./introTextEffect.js"; 
 import { cursorInit } from "./cursor.js";
 import { shootingEffect } from "./shooting.js";
 
-marqueeScrollEffect();
+/* Portfolio */
+import { portfolioInit } from "./portfolio.js";
+
+/* HOME PAGE */
+// marqueeScrollEffect();
 // introTextEffect();
-cursorInit();
-shootingEffect();
+// cursorInit();
+// shootingEffect();
+
+/* PORTFOLIO PAGE */
+// portfolioInit();
+
+/* PROJECT PAGE */

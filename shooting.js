@@ -1,4 +1,6 @@
 
+let isSubmitting = false;
+
 const updateScore = (score) => {
     document.querySelector('.score-count').textContent = score;
 }
@@ -38,6 +40,9 @@ export const shootingEffect = () => {
     let duration = 0.25;
     let stagger = duration;
     let repeatDelay = 0.075 * (blocks.length - 1);
+
+    const overlayCloseBtn = document.querySelector('[data-action="close"]');
+    const overlayGoBtn = document.querySelector('[data-action="go"]');
 
     const overlay = document.querySelector('.overlay');
     gsap.set(overlay, {
@@ -92,23 +97,42 @@ export const shootingEffect = () => {
             } else {
                 animationTimeline.pause();
                 showOverlay(overlay);
+                
 
+                overlayCloseBtn.addEventListener('click', () => {
+                    animationTimeline.resume();
+                    gsap.to(overlay, {
+                        autoAlpha: 0,
+                        duration: 0.5,
+                        ease: "power4.inOut",
+                    });
+                });
+                overlayGoBtn.addEventListener('click', () => {
+                    if (isSubmitting) {
+                        return; // Do nothing if already submitting
+                    }
+                
+                    isSubmitting = true;
+                    console.log('GO!')
+                    if (clickTarget === "portfolio") {
+                        console.log('PORTFOLIO')
+                        
+                    } else if (clickTarget === "about") {
+                        console.log('ABOUT')
+                    } else if (clickTarget === "designo") {
+                        console.log('DESIGNO')
+                    } else if (clickTarget === "arch") {
+                        console.log('ARCH')
+                    } else if (clickTarget === "audiophile") {
+                        console.log('AUDIOPHILE')
+                    }
 
+                    isSubmitting = false;
+                });
 
             }
             
-            // if (clickTarget === "portfolio") {
-            //     console.log('PORTFOLIO')
-                
-            // } else if (clickTarget === "about") {
-            //     console.log('ABOUT')
-            // } else if (clickTarget === "designo") {
-            //     console.log('DESIGNO')
-            // } else if (clickTarget === "arch") {
-            //     console.log('ARCH')
-            // } else if (clickTarget === "audiophile") {
-            //     console.log('AUDIOPHILE')
-            // }
+
 
 
             if (previousGif) {
