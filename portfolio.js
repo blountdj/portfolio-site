@@ -1,14 +1,13 @@
 console.log('portfolio.js')
 
 
-
-export function portfolioInit() {
+export function portfolioInit(container) {
 
     let current = 0;
     let directionForward = true;
-    const items = document.querySelectorAll(".card-slider .items .item");
-    const nextBtn = document.querySelector(".card-slider .next");
-    const prevBtn = document.querySelector(".card-slider .prev");
+    const items = container.querySelectorAll(".card-slider .items .portfolio-item");
+    const nextBtn = container.querySelector(".card-slider .next");
+    const prevBtn = container.querySelector(".card-slider .prev");
 
     const setItems = () => {
 

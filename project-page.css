@@ -2,10 +2,40 @@
     text-decoration: none;
 }
 
-/* .project-thumbnail-image:hover {
-    border: 3px solid var(--lighter-green);
+/* Button Animation */
+
+.btn-text-emoji {
+    animation: gentlePoint 2s infinite ease-in-out;
+  }
+  
+@keyframes gentlePoint {
+    0%, 100% {
+      transform: rotate(0deg) scale(1);
+    }
+    50% {
+      transform: rotate(5deg) scale(1.05);
+    }
+}
+  
+  
+.btn-project:hover {
+    animation: neonPulse 1.5s infinite;
+    box-shadow: 0 0 20px var(--lighter-green);
+    /* text-shadow: 0 0 10px var(--lighter-green); */
+}
+  
+@keyframes neonPulse {
+    0% {
+      box-shadow: 0 0 10px var(--lighter-green);
+    }
+    50% {
+      box-shadow: 0 0 20px var(--lighter-green), 0 0 30px var(--lighter-green);
+    }
+    100% {
+      box-shadow: 0 0 10px var(--lighter-green);
+    }
 }
 
-.project-thumbnail-image {
-    transition: border 0.3s ease-in-out;
-} */
+.no-animation {
+    animation: none!important;
+  }
