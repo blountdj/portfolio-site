@@ -1,3 +1,7 @@
+body {
+  cursor: auto;
+}
+
 .nav .next,
 .nav .prev {
   stroke: #fff;

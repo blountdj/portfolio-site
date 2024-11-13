@@ -1,5 +1,5 @@
 
-export const cursorInit = () => {
+export const cursorInit = (container) => {
     const cursor = document.querySelector(".cursor");
     document.body.addEventListener("mousemove", onMouseMove);
     

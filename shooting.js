@@ -36,6 +36,8 @@ const showOverlay = (elem) => {
 }
 
 export const shootingEffect = () => {
+    // window.Barba.Pjax.start();
+    
     let blocks = document.querySelectorAll(".block");
     let duration = 0.25;
     let stagger = duration;
@@ -85,6 +87,8 @@ export const shootingEffect = () => {
             const y = event.clientY;
             const clickTarget = event.target.closest('.block').dataset.type;
 
+            console.log('clickTarget:', clickTarget)
+
             if (clickTarget === "baddy" || clickTarget === "goody") {
                 let points = clickTarget === "baddy" ? 10 : -10;
                 score += points
@@ -97,6 +101,10 @@ export const shootingEffect = () => {
             } else {
                 animationTimeline.pause();
                 showOverlay(overlay);
+
+                // Update text on overlay
+                const nextPageTextElem = overlay.querySelector('.home-popup-text.is-next-page')
+                nextPageTextElem.textContent = `${clickTarget.charAt(0).toUpperCase() + clickTarget.slice(1)} page?`
                 
 
                 overlayCloseBtn.addEventListener('click', () => {
@@ -107,33 +115,48 @@ export const shootingEffect = () => {
                         ease: "power4.inOut",
                     });
                 });
+
                 overlayGoBtn.addEventListener('click', () => {
                     if (isSubmitting) {
-                        return; // Do nothing if already submitting
+                      return; // Do nothing if already submitting
                     }
-                
+                  
                     isSubmitting = true;
                     console.log('GO!')
-                    if (clickTarget === "portfolio") {
-                        console.log('PORTFOLIO')
-                        
-                    } else if (clickTarget === "about") {
-                        console.log('ABOUT')
-                    } else if (clickTarget === "designo") {
-                        console.log('DESIGNO')
-                    } else if (clickTarget === "arch") {
-                        console.log('ARCH')
-                    } else if (clickTarget === "audiophile") {
-                        console.log('AUDIOPHILE')
+                  
+                    switch (clickTarget) {
+                      case "portfolio":
+                        console.log('PORTFOLIO');
+                        barba.go("portfolio");
+                        break;
+                      case "about":
+                        console.log('ABOUT');
+                        barba.go("about");
+                        break;
+                      case "designo project":
+                        console.log('DESIGNO');
+                        barba.go("designo");
+                        break;
+                      case "arch project":
+                        console.log('ARCH');
+                        barba.go("arch-studio");
+                        break;
+                      case "audiophile project":
+                        console.log('AUDIOPHILE');
+                        barba.go("audiophile");
+                        break;
+                      case "contact":
+                        console.log('CONTACT');
+                        barba.go("contact");
+                        break;
+                      default:
+                        break;
                     }
-
+                  
                     isSubmitting = false;
-                });
-
+                  });
             }
             
-
-
 
             if (previousGif) {
                 previousGif.remove();
@@ -161,4 +184,6 @@ export const shootingEffect = () => {
 
 }
 
-    
+// document.addEventListener('DOMContentLoaded', () => {
+//     barba.init();
+//   });

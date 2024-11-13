@@ -1,8 +1,13 @@
 console.log('portfolio.js')
 
 
-export function portfolioInit(container) {
+import { h1LoadEffect } from "./commonAnimations.js";
 
+
+
+
+export function portfolioInit(container) {
+    h1LoadEffect(container)
     let current = 0;
     let directionForward = true;
     const items = container.querySelectorAll(".card-slider .items .portfolio-item");
@@ -100,4 +105,5 @@ export function portfolioInit(container) {
     prevBtn.addEventListener("click", prev);
 
     setItems();
+    
   }

@@ -1,14 +1,14 @@
 
-const cloneText = () => {
+const cloneText = (container) => {
 
-    const rollingTexts = document.querySelectorAll('.intro-text');
+    const rollingTexts = container.querySelectorAll('.intro-text');
 
     rollingTexts.forEach((text) => {
-        console.log('text', text);
+        // console.log('text', text);
         const data = text.dataset.text;
-        console.log('data', data);
+        // console.log('data', data);
         const chars = Array.from(data);
-        console.log('chars', chars);
+        // console.log('chars', chars);
         for (let i = 0; i < chars.length; i++) {
             const inner = document.createElement('span');
             inner.classList.add('intro-text-inner');
@@ -28,11 +28,11 @@ const cloneText = () => {
         }
     });
 
-    animateText();
+    animateText(container);
 };
 
-const animateText = () => {
-    const rollingInners = document.querySelectorAll('.intro-text-inner');
+const animateText = (container) => {
+    const rollingInners = container.querySelectorAll('.intro-text-inner');
 
     gsap.set(rollingInners, {
         //? -100% = 1 row of inner letters
@@ -79,8 +79,8 @@ const animateText = () => {
     // });
 };
 
-export const introTextEffect = () => {
-    cloneText();
+export const introTextEffect = (container) => {
+    cloneText(container);
 }
 
 
