@@ -3,11 +3,11 @@ console.log('barbaInit.js loaded')
 import { CONFIG } from "./config.js";
 import { hamburgerInit } from "./hamburger.js";
 import { menuInit } from "./menu.js";
-import { portfolioInit } from "./portfolio.js";
+import { portfolioInit, portfolioAnimate } from "./portfolio.js";
 import { homeInit, homeAnimate } from "./home.js";
 import { projectPageAnimate, projectPageInit } from "./project-page.js";
-import { aboutInit } from "./about.js";
-import { contactInit } from "./contact.js";
+import { aboutInit, aboutAnimations } from "./about.js";
+import { contactInit, contactAnimations } from "./contact.js";
 
 import { 
 //     // textSplit,
@@ -158,24 +158,17 @@ barba.hooks.beforeEnter((data) => {
         portfolioInit(data.next.container)
     } else if (projectPages.includes(nextPageId)) {
         projectPageInit(data.next.container)
+    } else if (nextPageId === 'contact') {
+        contactInit(data.next.container)
+    } else if (nextPageId === 'about') {
+        aboutInit(data.next.container)
     }
 
     hamburgerInit(data.next.container)
     menuInit(data.next.container)
 
-
     // currentPageId === 'portfolio' ? addScriptToBody(portfolioJsFileUrl) : removeScriptFromBody(portfolioJsFileUrl)
     // currentPageId === 'portfolio' ? addFilesCssToBody([portfolioCssFileUrl]) : removeCssFilesFromBody([portfolioCssFileUrl] )
-
-    // if (data.next.namespace === 'home') {
-    //     homeAnimationInit(data.next.container)
-    // } else if (data.next.namespace === 'portfolio') {
-    //     initPortfolio(data.next.container)
-    // } else if (data.next.namespace === 'about us') {
-    //     aboutAnimationInit(data.next.container)
-    // } else if (data.next.namespace === 'contact') {
-    //     contactAnimationInit(data.next.container)
-    // }
 });
 
 
@@ -188,20 +181,15 @@ barba.hooks.once(async (data) => {
         homeAnimate(data.next.container, 'once')
     //     homeAnimationEnter(data.next.container)
     } else if (data.next.namespace === 'portfolio') {
-        portfolioInit(data.next.container)
+        portfolioAnimate(data.next.container)
     //     animatePortfolioEnter(data.next.container)
     } else if (projectPages.includes(data.next.namespace )) {
         projectPageAnimate(data.next.container)
     } else if (data.next.namespace === 'about') {
-        aboutInit(data.next.container)
+        aboutAnimations(data.next.container)
     } else if (data.next.namespace === 'contact') {
-        contactInit(data.next.container)
-    }
-    // } else if (data.next.namespace === 'about us') {
-    //     aboutAnimationEnter(data.next.container)
-    // } else if (data.next.namespace === 'contact') {
-    //     contactAnimationEnter(data.next.container)
-    // }
+        contactAnimations(data.next.container)
+    } 
 });
 
 
@@ -210,12 +198,6 @@ barba.hooks.afterEnter((data) => {
     const currentPageId = data.current.namespace;
     const nextPageId = data.next.namespace;
     console.log('currentPageId:', currentPageId)
-
-    
-        
-    // currentPageId === 'home' ? addScriptToBody(homeJsFileUrl) : removeScriptFromBody(homeJsFileUrl)
-    // currentPageId === 'about us' ? addScriptToBody(aboutJsFileUrl) : removeScriptFromBody(aboutJsFileUrl)
-    // currentPageId === 'contact' ? addScriptToBody(contactJsFileUrl) : removeScriptFromBody(contactJsFileUrl)
     
     nextPageId === 'home' ? addFilesCssToBody([homeCssFileUrl]) : removeCssFilesFromBody([homeCssFileUrl] )
     nextPageId === 'portfolio' ? addFilesCssToBody([portfolioCssFileUrl]) : removeCssFilesFromBody([portfolioCssFileUrl] )
@@ -230,25 +212,106 @@ barba.hooks.afterEnter((data) => {
         removeCssFilesFromBody([projectsCssFileUrl]);
     }
 
-    projectsCssFileUrl
-
-
 });
 
+let animationType;
 
 barba.init({
     debug: CONFIG.barbaDebug,
     sync: false,
     views: [],
     transitions: [
+        
         {
             name: 'page-fade-transition',
             // to: { namespace: ['todo'] },
+
+            before: ({ trigger }) => {
+                console.log('BEFORE')
+                // Store the animation type in a variable accessible to leave()
+                animationType = trigger.dataset?.animation || 'normal';
+
+              },
             once() {},
             async leave(data) {
                 console.log('\n\nLEAVE')
-                animationFadeOutLeave(data.current.container);
+                // animationFadeOutLeave(data.current.container);
                 // await introElementsReset()
+                console.log('animationType:', animationType)
+
+                if (animationType === 'normal') {
+                    // TODO - add normal animation - enlarging circle
+
+                } else if (animationType === 'menu') {
+                    // TODO - add menu animation                 
+                }
+
+
+                /* TESTING2 */
+
+                const container = data.current.container;
+                const rect = container.getBoundingClientRect();
+
+                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.style.position = 'fixed';
+                svg.style.top = '0';
+                svg.style.left = '0';
+                svg.style.width = '100%';
+                svg.style.height = '100%';
+                svg.style.zIndex = '9999';
+                svg.setAttribute("id", "transition-svg");
+                
+                // Create clipPath
+                const clipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
+                clipPath.setAttribute("id", "transition-clip");
+                
+                // Create grid of rectangles in clipPath
+                const cols = 8;
+                const rows = 6;
+                const rects = [];
+                
+                for(let row = 0; row < rows; row++) {
+                    for(let col = 0; col < cols; col++) {
+                    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                    rect.setAttribute("x", `${(col / cols) * 100}%`);
+                    rect.setAttribute("y", `${(row / rows) * 100}%`);
+                    rect.setAttribute("width", `${100 / cols}%`);
+                    rect.setAttribute("height", `${100 / rows}%`);
+                    clipPath.appendChild(rect);
+                    rects.push(rect);
+                    }
+                }
+                
+                svg.appendChild(clipPath);
+                document.body.appendChild(svg);
+                
+                // Apply clipPath to container
+                container.style.clipPath = "url(#transition-clip)";
+                
+                return gsap.to(rects, {
+                    scale: 0,
+                    transformOrigin: "center",
+                    duration: 1,
+                    ease: "power2.inOut",
+                    stagger: {
+                    amount: 0.5,
+                    from: "random",
+                    grid: [rows, cols],
+                    }
+                });
+
+
+                /* END TESTING */
+
+                
+                // console.log('window.animationType:', window.animationType)
+                // try {
+                //     // console.log('window.animationType:', window.animationType)
+                //     console.log('window.animationType:', window.animationType)
+                // } catch (error) {
+                //     console.error('An error occurred while setting animationType:', error);
+                //     // Handle the error gracefully here
+                // }
 
                 // if (data.next.namespace === 'home') {
                 //     homeInit(data.next.container)
@@ -264,8 +327,12 @@ barba.init({
                 const nextPage = data.next.namespace;
 
                 // animationFadeInEnter(data.next.container);
+                const svg = document.getElementById("transition-svg");
+                if (svg) {
+                    svg.remove();
+                }
 
-
+                /*
                 if (nextPage === 'home') {
                     homeAnimate(data.next.container, 'enter')
                     // animationFadeInEnter(data.next.container);
@@ -273,7 +340,7 @@ barba.init({
                 //         homeAnimationEnter(data.next.container)
                 //     }, 3000);
                 } else if (nextPage === 'portfolio') {
-                    portfolioInit(data.next.container)
+                    portfolioAnimate(data.next.container)
                     // animationFadeInEnter(data.next.container);
                 //     setTimeout(() => {
                 //         animatePortfolioEnter(data.next.container)
@@ -282,7 +349,7 @@ barba.init({
                     projectPageAnimate(data.next.container)
                     // animationFadeInEnter(data.next.container);
                 } else if (nextPage === 'about') {
-                    aboutInit(data.next.container)
+                    aboutAnimations(data.next.container)
                     // animationFadeInEnter(data.next.container);
                 // } else if (nextPage === 'about us') {
                 //     setTimeout(() => {
@@ -293,7 +360,7 @@ barba.init({
                 //         contactAnimationEnter(data.next.container)
                 //     }, 3250);
                 } else if (nextPage === 'contact') {
-                    contactInit(data.next.container)
+                    contactAnimations(data.next.container)
                     // animationFadeInEnter(data.next.container);
                 //     setTimeout(() => {
                 //         animatePortfolioEnter(data.next.container)
@@ -301,7 +368,7 @@ barba.init({
                 }else {
                     animationFadeInEnter(data.next.container);
                 }
-
+                */
                 console.log('FINISH ENTER')
             },
         },

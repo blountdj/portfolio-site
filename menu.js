@@ -1,7 +1,7 @@
 console.log('menu')
 
 export const menuInit = (container) => {
-    console.log('menuInit')
+    // console.log('menuInit')
 
     gsap.registerPlugin(CustomEase);
     CustomEase.create(

@@ -4,7 +4,7 @@ export const hamburgerInit = (container) => {
     const menuLinkHover = container.querySelectorAll(".menu-link-hover2");
     const menuLinkMain = container.querySelectorAll(".menu-link-main");
 
-    console.log('hamburgerInit');
+    // console.log('hamburgerInit');
     const hamburger = container.querySelector('.hamburger');
     const spans = Array(3).fill().map(() => {
         const span = document.createElement('span');

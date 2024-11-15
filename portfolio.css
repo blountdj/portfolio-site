@@ -5,14 +5,22 @@ body {
 .nav .next,
 .nav .prev {
   stroke: #fff;
-
+  transition: stroke 0.3s ease-in-out;
 }
 
-.item-card:hover {
+.nav .next:hover,
+.nav .prev:hover {
+  stroke: var(--lighter-green);
+}
+
+/* .item-card:hover {
     transform: scale(1.05);
     border: 3px solid var(--lighter-green);
-}
+} */
 
-.item-card {
+/* .item-card {
     transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
+} */
+.svg-arrow {
+  height: 0.6rem;
 }
