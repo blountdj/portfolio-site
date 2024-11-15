@@ -18,6 +18,20 @@ import {
  } from "./commonAnimations.js";
 
 
+ const project = {
+    items: null,
+    liveBtn: null,
+    portfolioTextWrapper: null,
+    frameFigure: null,
+    projectThumbnails: null,
+    imagePanelText: null,
+    darrenH2: null,
+    projectH2: null,
+    projectParagraph: null,
+    thumbsUpEmoji: null,
+    pointerEmoji: null,
+  }
+
 
 const addBtnHoverAnimations = (visitSiteBtn, thumbsUpEmoji, pointerEmoji) => {
 
@@ -101,43 +115,43 @@ export const projectPageInit = (container) => {
     console.log('projectPageInit')
     h1LoadInit(container)
 
-    const hamburger = container.querySelector('.hamburger');
-    const liveBtn = container.querySelector('.link-block-3');
-    const portfolioTextWrapper = container.querySelector('.marquee-part');
-    const frameFigure = container.querySelector('.project-image-frame-figure2');
-    const projectThumbnails = container.querySelectorAll('.project-thumbnail-image');
-    const imagePanelText = container.querySelector('.image-panel-slide-item-h3');
-    const darrenH2 = container.querySelector('.h2-wrapper');
-    const projectH2 = container.querySelector('.project-h2');
-    const projectParagraph = container.querySelectorAll('.project-paragraph');
-    const thumbsUpEmoji = container.querySelector('.btn-text-emoji.is-thumbsup');
-    // hide elements
+    project.hamburger = container.querySelector('.hamburger');
+    project.liveBtn = container.querySelector('.link-block-3');
+    project.portfolioTextWrapper = container.querySelector('.marquee-part');
+    project.frameFigure = container.querySelector('.project-image-frame-figure2');
+    project.projectThumbnails = container.querySelectorAll('.project-thumbnail-image');
+    project.imagePanelText = container.querySelector('.image-panel-slide-item-h3');
+    project.darrenH2 = container.querySelector('.h2-wrapper');
+    project.projectH2 = container.querySelector('.project-h2');
+    project.projectParagraph = container.querySelectorAll('.project-paragraph');
+    project.thumbsUpEmoji = container.querySelector('.btn-text-emoji.is-thumbsup');
+    project.pointerEmoji = container.querySelector('.btn-text-emoji.is-pointer');
 
 
-    gsap.set([hamburger, projectH2, projectParagraph], {
+    gsap.set([project.hamburger, project.projectH2, project.projectParagraph], {
         opacity: 0,
     })
 
-    gsap.set(liveBtn, {
+    gsap.set(project.liveBtn, {
         xPercent: 100,
         opacity: 0,
     })
 
-    gsap.set(portfolioTextWrapper, {
+    gsap.set(project.portfolioTextWrapper, {
         scaleX: 0,
         // opacity: 0,
     })
 
-    gsap.set([imagePanelText, darrenH2], {
+    gsap.set([project.imagePanelText, project.darrenH2], {
         yPercent: -105,
         opacity: 0,
     })
     
-    gsap.set(thumbsUpEmoji, {
+    gsap.set(project.thumbsUpEmoji, {
         yPercent: 650,
     })
 
-    gsap.set([frameFigure, projectThumbnails], {
+    gsap.set([project.frameFigure, project.projectThumbnails], {
         opacity: 0,
         scale: 0.0,
     })
@@ -147,19 +161,6 @@ export const projectPageInit = (container) => {
 export const projectPageAnimate = (container) => {
     console.log('projectPageAnimate')
 
-    const hamburger = container.querySelector('.hamburger');
-    const liveBtn = container.querySelector('.link-block-3');
-    const portfolioTextWrapper = container.querySelector('.marquee-part');
-    const frameFigure = container.querySelector('.project-image-frame-figure2');
-    const projectThumbnails = container.querySelectorAll('.project-thumbnail-image');
-    const imagePanelText = container.querySelector('.image-panel-slide-item-h3');
-    const darrenH2 = container.querySelector('.h2-wrapper');
-    const projectH2 = container.querySelector('.project-h2');
-    const projectParagraph = container.querySelectorAll('.project-paragraph');
-
-    const thumbsUpEmoji = container.querySelector('.btn-text-emoji.is-thumbsup');
-    const pointerEmoji = container.querySelector('.btn-text-emoji.is-pointer');
-
     const frameOverlay = container.querySelector('.project-image-frame-overlay');
     const frameImage = container.querySelector('.image-panel-slide-item-image');
 
@@ -168,24 +169,24 @@ export const projectPageAnimate = (container) => {
     const thumbNails = container.querySelectorAll('.thumbnail-image-wrapper');
 
     gsap.timeline()
-    .add(() => elemScaleUp(frameFigure, 1), 0.3)
-    .add(() => elemFadeIn(projectH2), 0.5)
-    .add(() => yPercentOpacityReturn(imagePanelText), 0.75)
-    .add(() => staggerOpacityToOneEffect(projectParagraph), 0.5)
-    .add(() => staggerOpacityAndScaleToOneEffect(projectThumbnails), 0.75)
+    .add(() => elemScaleUp(project.frameFigure, 1), 0.3)
+    .add(() => elemFadeIn(project.projectH2), 0.5)
+    .add(() => yPercentOpacityReturn(project.imagePanelText), 0.75)
+    .add(() => staggerOpacityToOneEffect(project.projectParagraph), 0.5)
+    .add(() => staggerOpacityAndScaleToOneEffect(project.projectThumbnails), 0.75)
 
-    .add(() => elemScaleTo1RightToLeft(portfolioTextWrapper), 1.75)
+    .add(() => elemScaleTo1RightToLeft(project.portfolioTextWrapper), 1.75)
     .add(() => h1LoadEffect(container), 2.0)
-    .add(() => xPercentOpacityReturn(liveBtn), 2.25)
-    .add(() => yPercentOpacityReturn(darrenH2), 3)
+    .add(() => xPercentOpacityReturn(project.liveBtn), 2.25)
+    .add(() => yPercentOpacityReturn(project.darrenH2), 3)
 
-    .add(() => elemFadeIn(hamburger), 3)
+    .add(() => elemFadeIn(project.hamburger), 3)
 
-    .add(() => addBtnHoverAnimations(liveBtn, thumbsUpEmoji, pointerEmoji), 3)
-    .add(() => addEventListeners(projectThumbnails, frameOverlay, frameImage, imagePanelText), 3)
+    .add(() => addBtnHoverAnimations(project.liveBtn, project.thumbsUpEmoji, project.pointerEmoji), 3)
+    .add(() => addEventListeners(project.projectThumbnails, frameOverlay, frameImage, project.imagePanelText), 3)
     // .add(() => addH1HoverAnimations(h1Chars), 3)
     .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 3)
-    .add(() => addDarrenH2Animations(darrenH2), 3)
+    .add(() => addDarrenH2Animations(project.darrenH2), 3)
     .add(() => imageStationaryAnimation(thumbNails), 3)
 
 }

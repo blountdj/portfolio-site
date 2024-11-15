@@ -133,8 +133,41 @@ const contactCssFileUrl = `http://127.0.0.1:5500/contact.css`
 
 
 
+function fallElements(selector, delay, staggerAmount) {
+    // console.log('fallElements:', selector)
+    
+    const divNum = selector.length > 5 ? -1 : 1
+    const viewportHeight = (window.innerHeight) / divNum;
+
+    gsap.to(selector, {
+        y: viewportHeight + 200,
+        rotation: gsap.utils.random(-180, 180, 5), // more extreme rotation
+        opacity: 0,
+        duration: gsap.utils.random(0.8, 1.6, 0.1), // random duration per element
+        ease: "power3.in",
+        delay: delay,
+        stagger: {
+            amount: staggerAmount,
+            from: "random",
+            ease: "power1.inOut"
+        },
+        transformOrigin: "center center",
+        x: gsap.utils.random(-100, 100, 5), // add some horizontal movement
+    });
+}
+
+
 // const pageSpecificScriptUrl = `https://cdn.jsdelivr.net/gh/blountdj/arch-studio@v1/home.js`
 
+
+barba.hooks.beforeLeave((data) => {
+    console.log('beforeEnter: animationType:', animationType)
+
+    document.body.style.pointerEvents = 'none';
+    document.body.style.cursor = 'wait';
+
+
+})
 
 
 barba.hooks.beforeEnter((data) => {
@@ -212,7 +245,15 @@ barba.hooks.afterEnter((data) => {
         removeCssFilesFromBody([projectsCssFileUrl]);
     }
 
+    document.body.style.pointerEvents = 'auto';
+    if (nextPageId !== 'home') {
+        document.body.style.cursor = 'auto';
+    }
+
 });
+
+
+
 
 let animationType;
 
@@ -232,6 +273,7 @@ barba.init({
                 animationType = trigger.dataset?.animation || 'normal';
 
               },
+
             once() {},
             async leave(data) {
                 console.log('\n\nLEAVE')
@@ -244,61 +286,28 @@ barba.init({
 
                 } else if (animationType === 'menu') {
                     // TODO - add menu animation                 
+                    return new Promise((resolve) => {    
+                        // if (animationType === 'menu') {
+                   
+                        // console.log('waiting 5 seconds')
+                        const menuCharElems = data.current.container.querySelectorAll('.menu-link-p > span')
+                        const menuImgElems = data.current.container.querySelectorAll('.menu-img')
+                        const menuItems = data.current.container.querySelectorAll('.menu-item')
+                        const mainSection = data.current.container.querySelector('.main-section')
+                        gsap.set(mainSection, {opacity: 0})
+
+                        fallElements(menuCharElems, 0, 1.5)
+                        fallElements(menuImgElems, 0.5, 1.5)  
+                        fallElements(menuItems, 1.8, 0.5)  
+            
+                        setTimeout(() => { 
+                            resolve()
+                        }, 4000)
+                    })
                 }
 
+                // }
 
-                /* TESTING2 */
-
-                const container = data.current.container;
-                const rect = container.getBoundingClientRect();
-
-                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                svg.style.position = 'fixed';
-                svg.style.top = '0';
-                svg.style.left = '0';
-                svg.style.width = '100%';
-                svg.style.height = '100%';
-                svg.style.zIndex = '9999';
-                svg.setAttribute("id", "transition-svg");
-                
-                // Create clipPath
-                const clipPath = document.createElementNS("http://www.w3.org/2000/svg", "clipPath");
-                clipPath.setAttribute("id", "transition-clip");
-                
-                // Create grid of rectangles in clipPath
-                const cols = 8;
-                const rows = 6;
-                const rects = [];
-                
-                for(let row = 0; row < rows; row++) {
-                    for(let col = 0; col < cols; col++) {
-                    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-                    rect.setAttribute("x", `${(col / cols) * 100}%`);
-                    rect.setAttribute("y", `${(row / rows) * 100}%`);
-                    rect.setAttribute("width", `${100 / cols}%`);
-                    rect.setAttribute("height", `${100 / rows}%`);
-                    clipPath.appendChild(rect);
-                    rects.push(rect);
-                    }
-                }
-                
-                svg.appendChild(clipPath);
-                document.body.appendChild(svg);
-                
-                // Apply clipPath to container
-                container.style.clipPath = "url(#transition-clip)";
-                
-                return gsap.to(rects, {
-                    scale: 0,
-                    transformOrigin: "center",
-                    duration: 1,
-                    ease: "power2.inOut",
-                    stagger: {
-                    amount: 0.5,
-                    from: "random",
-                    grid: [rows, cols],
-                    }
-                });
 
 
                 /* END TESTING */
@@ -327,12 +336,8 @@ barba.init({
                 const nextPage = data.next.namespace;
 
                 // animationFadeInEnter(data.next.container);
-                const svg = document.getElementById("transition-svg");
-                if (svg) {
-                    svg.remove();
-                }
 
-                /*
+                
                 if (nextPage === 'home') {
                     homeAnimate(data.next.container, 'enter')
                     // animationFadeInEnter(data.next.container);
@@ -368,7 +373,7 @@ barba.init({
                 }else {
                     animationFadeInEnter(data.next.container);
                 }
-                */
+                
                 console.log('FINISH ENTER')
             },
         },

@@ -12,17 +12,26 @@ import {
     elemScaleUp
  } from "./commonAnimations.js";
 
+
+ const home = {
+    hamburger: null,
+    scoreWrapper: null,
+    marqueeSection: null,
+  }
+
+
 export const homeInit = (container) => {
     console.log('homeInit')
 
     return new Promise((resolve) => {
-        const hamburger = container.querySelector('.hamburger')
-        const scoreWrapper = container.querySelector('.score-wrapper')
-        const marqueeSection = container.querySelector('.home-marquee-section')
-        gsap.set([hamburger, scoreWrapper, marqueeSection], {
+        home.hamburger = container.querySelector('.hamburger')
+        home.scoreWrapper = container.querySelector('.score-wrapper')
+        home.marqueeSection = container.querySelector('.home-marquee-section')
+
+        gsap.set([home.hamburger, home.scoreWrapper, home.marqueeSection], {
             opacity: 0
         })
-        gsap.set('.home-marquee-section', {
+        gsap.set(home.marqueeSection, {
             yPercent: 100
         })
         resolve()
@@ -33,19 +42,15 @@ export const homeAnimate = (container, type) => {
     console.log('homeAnimate')
 
     const introTextWrapper = container.querySelector('.intro-text-wrapper')
-    const hamburger = container.querySelector('.hamburger')
-    const scoreWrapper = container.querySelector('.score-wrapper')
-    const marqueeSection = container.querySelector('.home-marquee-section')
-
 
     if (type === 'once') {
         gsap.timeline()
             .add(() => introTextEffect(container), 0)
             .add(() => elemScaleUp(introTextWrapper, 30), 5.4)
             .add(() => elemFadeOut(introTextWrapper), 5.65)
-            .add(() => elemFadeIn(hamburger), 6)
-            .add(() => elemFadeIn(scoreWrapper), 6.25)
-            .add(() => yPercentOpacityReturn(marqueeSection), 6.5)
+            .add(() => elemFadeIn(home.hamburger), 6)
+            .add(() => elemFadeIn(home.scoreWrapper), 6.25)
+            .add(() => yPercentOpacityReturn(home.marqueeSection), 6.5)
             .add(() => marqueeScrollEffect(), 6.75)
             .add(() => cursorInit(container), 6.75)
             .add(() => shootingEffect(), 6.75)
@@ -55,9 +60,9 @@ export const homeAnimate = (container, type) => {
         // .add(() => introTextEffect(container), 0)
         // .add(() => elemScaleUp(introTextWrapper, 30), 5.4)
         // .add(() => elemFadeOut(introTextWrapper), 5.65)
-        .add(() => elemFadeIn(hamburger), 0)
-        .add(() => elemFadeIn(scoreWrapper), 0.25)
-        .add(() => yPercentOpacityReturn(marqueeSection), 0.5)
+        .add(() => elemFadeIn(home.hamburger), 0)
+        .add(() => elemFadeIn(home.scoreWrapper), 0.25)
+        .add(() => yPercentOpacityReturn(home.marqueeSection), 0.5)
         .add(() => marqueeScrollEffect(), 0.75)
         .add(() => cursorInit(container), 0.75)
         .add(() => shootingEffect(), 0.75)

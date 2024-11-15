@@ -12,7 +12,8 @@ import {
   imageStationaryAnimation,
   moveRightFiveOpacityOne,
   moveLeftFiveOpacityOne,
-  elemScaleUp
+  elemScaleUp,
+  // elemScaleUp2
 } from "./commonAnimations.js";
 
 
@@ -20,19 +21,31 @@ let current = 0;
 let directionForward = true;
 
 
+const portfolio = {
+  items: null,
+  portfolioTextWrapper: null,
+  darrenH2: null,
+  firstImage: null,
+  prevArrow: null,
+  nextArrow: null,
+  hamburger: null,
+}
+
+
 export function portfolioInit(container) {
   console.log('portfolioInit')
 
   h1LoadInit(container)
 
-  const items = container.querySelectorAll(".card-slider .items .portfolio-item");
-  const portfolioTextWrapper = container.querySelector('.marquee-part');
-  const darrenH2 = container.querySelector('.h2-wrapper');
-  const firstImage = container.querySelector('.portfolio-item');
-  const prevArrow = container.querySelector('.prev');
-  const nextArrow = container.querySelector('.next');
+  portfolio.items = container.querySelectorAll(".card-slider .items .portfolio-item");
+  portfolio.portfolioTextWrapper = container.querySelector('.marquee-part');
+  portfolio.darrenH2 = container.querySelector('.h2-wrapper');
+  portfolio.firstImage = container.querySelector('.portfolio-item');
+  portfolio.prevArrow = container.querySelector('.prev');
+  portfolio.nextArrow = container.querySelector('.next');
+  portfolio.hamburger = container.querySelector('.hamburger');
 
-  items.forEach((item, index) => {
+  portfolio.items.forEach((item, index) => {
     if (index === current) return;
 
     gsap.set(item, {
@@ -43,32 +56,32 @@ export function portfolioInit(container) {
 
   });
 
-  gsap.set(items[current], {
+  gsap.set(portfolio.items[current], {
     translateX: 0,
     opacity: 1,
   });
 
-  gsap.set(portfolioTextWrapper, {
+  gsap.set(portfolio.portfolioTextWrapper, {
     scaleX: 0,
     // opacity: 0,
   })
 
-  gsap.set(darrenH2, {
+  gsap.set(portfolio.darrenH2, {
     yPercent: -105,
     opacity: 0,
   })
 
-  gsap.set(firstImage, {
+  gsap.set([portfolio.firstImage, portfolio.hamburger], {
     opacity: 0,
     scale: 0.0,
   })
 
-  gsap.set(prevArrow, {
+  gsap.set(portfolio.prevArrow, {
     // opacity: 0,
     left: '47%',
   })
 
-  gsap.set(nextArrow, {
+  gsap.set(portfolio.nextArrow, {
     // opacity: 0,
     right: '47%',
   })
@@ -79,30 +92,24 @@ export function portfolioInit(container) {
 export function portfolioAnimate(container) {
     console.log('portfolioAnimate')
     
-    const nextBtn = container.querySelector(".card-slider .next");
-    const prevBtn = container.querySelector(".card-slider .prev");
     const h1Chars = container.querySelectorAll('.page-h1 > .word > .char-wrapper > .char');
     const itemCards = container.querySelectorAll('.item-card');
-    const darrenH2 = container.querySelector('.h2-wrapper');
-    const items = container.querySelectorAll(".card-slider .items .portfolio-item");
-    const portfolioTextWrapper = container.querySelector('.marquee-part');
-    const firstImage = container.querySelector('.portfolio-item');
-    
-    gsap.timeline()
-    .add(() => moveRightFiveOpacityOne(nextBtn), 0.25)
-    .add(() => [moveLeftFiveOpacityOne(prevBtn), moveLeftFiveOpacityOne(prevBtn)], 0.25)
-    .add(() => elemScaleUp(firstImage, 1), 0.8)
-    .add(() => elemScaleTo1RightToLeft(portfolioTextWrapper), 1.0)
+
+    gsap.timeline() 
+    .add(() => moveRightFiveOpacityOne(portfolio.nextArrow), 0.25)
+    .add(() =>  moveLeftFiveOpacityOne(portfolio.prevArrow), 0.25)
+    .add(() => elemScaleUp(portfolio.firstImage, 1, "back.out(1.7)"), 0.8)
+    .add(() => elemScaleTo1RightToLeft(portfolio.portfolioTextWrapper), 1.0)
     .add(() => h1LoadEffect(container), 1.4)
 
-    .add(() => yPercentOpacityReturn(darrenH2), 2.5)
-
-    .add(() => addDarrenH2Animations(darrenH2), 3)
+    .add(() => yPercentOpacityReturn(portfolio.darrenH2), 2.5)
+    .add(() => elemScaleUp(portfolio.hamburger, 1), 2.5)
+    .add(() => addDarrenH2Animations(portfolio.darrenH2), 3)
     .add(() => arrowAnimations(container), 3)
     .add(() => imageStationaryAnimation(itemCards), 3)
     .add(() => imageHoverAnimation(container), 3)
-    .add(() => nextBtn.addEventListener("click", () => next(items)), 3)
-    .add(() => prevBtn.addEventListener("click", () => prev(items)), 3)
+    .add(() => portfolio.nextArrow.addEventListener("click", () => next(portfolio.items)), 3)
+    .add(() => portfolio.prevArrow.addEventListener("click", () => prev(portfolio.items)), 3)
     .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 3)
 
 }

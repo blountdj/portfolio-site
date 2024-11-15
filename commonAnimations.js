@@ -60,14 +60,24 @@ export const elemFadeIn = (elem) => {
     })
 }
 
-export const elemScaleUp = (elem, scaleTo) => {
+export const elemScaleUp = (elem, scaleTo, ease='power2.out') => {
     gsap.to(elem, {
         scale: scaleTo,
         opacity: 1,
         duration: 0.75,
-        ease: 'power2.out',
+        ease: ease,
     })
 }
+
+
+// export const elemScaleUp2 = (elem, scaleTo) => {
+//     gsap.to(elem, {
+//         scale: scaleTo,
+//         opacity: 1,
+//         duration: 0.75,
+//         ease: "back.inOut(1.7)",
+//     })
+// }
 
 export const elemScaleTo1RightToLeft = (elem) => {
     gsap.to(elem, {
@@ -197,7 +207,8 @@ export const moveRightFiveOpacityOne = (elem) => {
         right: '5%',
         opacity: 1,
         duration: 1.25,
-        ease: 'power2.inOut',
+        // ease: 'power2.inOut',
+        ease: "back.inOut(1.7)",
     })
 }
 
@@ -206,7 +217,8 @@ export const moveLeftFiveOpacityOne = (elem) => {
         left: '5%',
         opacity: 1,
         duration: 1.25,
-        ease: 'power2.inOut',
+        // ease: 'power2.inOut',
+        ease: "back.inOut(1.7)",
     })
 }
 
