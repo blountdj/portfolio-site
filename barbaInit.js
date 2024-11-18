@@ -18,6 +18,14 @@ import {
     addFilesCssToBody,
     removeCssFilesFromBody,
 } from "./utilities.js";
+
+import { 
+    elemFadeOut,
+    initGridTransitionAnimation, 
+    showGridTransitionAnimation, 
+    hideGridTransitionAnimation 
+} from "./commonAnimations.js";
+
 // import { imgTransitionAnimation, introElementsReset } from "./animations.js";
 
 // const pageIdentifierTextEnter = async (data) => {
@@ -161,10 +169,12 @@ function fallElements(selector, delay, staggerAmount) {
 
 
 barba.hooks.beforeLeave((data) => {
-    console.log('beforeEnter: animationType:', animationType)
+    console.log('beforeLeave: animationType:', animationType)
 
-    document.body.style.pointerEvents = 'none';
-    document.body.style.cursor = 'wait';
+    // if (animationType === 'menu') {
+        document.body.style.pointerEvents = 'none';
+        document.body.style.cursor = 'wait';
+    // }
 
 
 })
@@ -185,17 +195,17 @@ barba.hooks.beforeEnter((data) => {
 
     const nextPageId = data.next.namespace;
 
-    if (nextPageId === 'home') {
-        homeInit(data.next.container)
-    } else if (nextPageId === 'portfolio') {
-        portfolioInit(data.next.container)
-    } else if (projectPages.includes(nextPageId)) {
-        projectPageInit(data.next.container)
-    } else if (nextPageId === 'contact') {
-        contactInit(data.next.container)
-    } else if (nextPageId === 'about') {
-        aboutInit(data.next.container)
-    }
+    // if (nextPageId === 'home') {
+    //     homeInit(data.next.container)
+    // } else if (nextPageId === 'portfolio') {
+    //     portfolioInit(data.next.container)
+    // } else if (projectPages.includes(nextPageId)) {
+    //     projectPageInit(data.next.container)
+    // } else if (nextPageId === 'contact') {
+    //     contactInit(data.next.container)
+    // } else if (nextPageId === 'about') {
+    //     aboutInit(data.next.container)
+    // }
 
     hamburgerInit(data.next.container)
     menuInit(data.next.container)
@@ -207,22 +217,21 @@ barba.hooks.beforeEnter((data) => {
 
 barba.hooks.once(async (data) => {
     console.log('barba.hooks.once');
-    // introAnimation(data, 3.25)
-    // await introAnimation(data)
 
-    if (data.next.namespace === 'home') {
-        homeAnimate(data.next.container, 'once')
-    //     homeAnimationEnter(data.next.container)
-    } else if (data.next.namespace === 'portfolio') {
-        portfolioAnimate(data.next.container)
-    //     animatePortfolioEnter(data.next.container)
-    } else if (projectPages.includes(data.next.namespace )) {
-        projectPageAnimate(data.next.container)
-    } else if (data.next.namespace === 'about') {
-        aboutAnimations(data.next.container)
-    } else if (data.next.namespace === 'contact') {
-        contactAnimations(data.next.container)
-    } 
+
+    // if (data.next.namespace === 'home') {
+    //     homeAnimate(data.next.container, 'once')
+    // //     homeAnimationEnter(data.next.container)
+    // } else if (data.next.namespace === 'portfolio') {
+    //     portfolioAnimate(data.next.container)
+    // //     animatePortfolioEnter(data.next.container)
+    // } else if (projectPages.includes(data.next.namespace )) {
+    //     projectPageAnimate(data.next.container)
+    // } else if (data.next.namespace === 'about') {
+    //     aboutAnimations(data.next.container)
+    // } else if (data.next.namespace === 'contact') {
+    //     contactAnimations(data.next.container)
+    // } 
 });
 
 
@@ -245,10 +254,10 @@ barba.hooks.afterEnter((data) => {
         removeCssFilesFromBody([projectsCssFileUrl]);
     }
 
-    document.body.style.pointerEvents = 'auto';
-    if (nextPageId !== 'home') {
-        document.body.style.cursor = 'auto';
-    }
+    nextPageId === 'home' ? document.body.style.cursor = 'none' : document.body.style.cursor = 'auto'
+    setTimeout(() => {
+        document.body.style.pointerEvents = 'auto';
+    }, 3000);
 
 });
 
@@ -280,16 +289,28 @@ barba.init({
                 // animationFadeOutLeave(data.current.container);
                 // await introElementsReset()
                 console.log('animationType:', animationType)
+                const mainSection = data.current.container.querySelector('.main-section')
+                elemFadeOut(mainSection)   
 
                 if (animationType === 'normal') {
-                    // TODO - add normal animation - enlarging circle
-
+                    return new Promise((resolve) => {   
+                        
+                        initGridTransitionAnimation()
+                        
+                        // elemFadeOut(mainSection)     
+                        showGridTransitionAnimation()
+                        
+                
+                        hideGridTransitionAnimation()
+                        setTimeout(() => { 
+                            resolve()
+                        }, 2000)
+                    })
+                    
                 } else if (animationType === 'menu') {
                     // TODO - add menu animation                 
                     return new Promise((resolve) => {    
-                        // if (animationType === 'menu') {
-                   
-                        // console.log('waiting 5 seconds')
+
                         const menuCharElems = data.current.container.querySelectorAll('.menu-link-p > span')
                         const menuImgElems = data.current.container.querySelectorAll('.menu-img')
                         const menuItems = data.current.container.querySelectorAll('.menu-item')

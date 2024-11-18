@@ -5,7 +5,7 @@ import {
     addH1HoverAnimations,
     addDarrenH2Animations,
     h1ShineEffect,
-    elemScaleTo1RightToLeft,
+    elemScaleTo1Center,
     yPercentOpacityReturn,
     elemScaleUp
  } from "./commonAnimations.js";
@@ -48,7 +48,7 @@ import {
     const h1Chars = container.querySelectorAll('.page-h1 > .word > .char-wrapper > .char');
 
     gsap.timeline()
-    .add(() => elemScaleTo1RightToLeft(about.portfolioTextWrapper), 0.35)
+    .add(() => elemScaleTo1Center(about.portfolioTextWrapper), 0.35)
     .add(() => h1LoadEffect(container), 0.75)
     .add(() => yPercentOpacityReturn(about.darrenH2), 1.5)
     .add(() => elemScaleUp(about.hamburger, 1), 2)

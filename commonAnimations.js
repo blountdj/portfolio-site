@@ -79,10 +79,10 @@ export const elemScaleUp = (elem, scaleTo, ease='power2.out') => {
 //     })
 // }
 
-export const elemScaleTo1RightToLeft = (elem) => {
+export const elemScaleTo1Center = (elem) => {
     gsap.to(elem, {
         scaleX: 1,
-        transformOrigin: 'right',
+        transformOrigin: 'center',
         duration: 0.75,
         ease: 'power2.out',
     })
@@ -92,7 +92,7 @@ export const elemFadeOut = (elem) => {
     gsap.to(elem, {
         autoAlpha: 0,
         duration: 0.5,
-        ease: 'power2.out',
+        ease: 'power2.inOut',
     })
 }
 
@@ -242,3 +242,74 @@ export const imageStationaryAnimation = (elems) => {
         });
     }
   };
+
+
+/* Transition Animation */
+const animation = {
+    element: document.querySelector('.pt_container'),
+    duration: 0.8,
+    ease: 'power4.inOut',
+    stagger: 0.048,
+};
+
+
+const cloneBoxes = () => {
+    for (let i = 0; i < 80; i++) {
+        const box = document.createElement('div');
+        box.classList.add('pt_box');
+        animation.element.append(box);
+    }
+};
+
+export const initGridTransitionAnimation = async () => {
+    // await addTransitionElement();
+    if (!document.querySelector('.pt_box')) {
+        cloneBoxes();
+    }
+
+    const boxes = document.querySelectorAll('.pt_box');
+    const origins = ['top', 'left', 'right', 'bottom'];
+    boxes.forEach(box => {
+        const randomOrigin = origins[Math.floor(Math.random() * origins.length)];
+        gsap.set(box, {
+            scaleY: 0,
+            transformOrigin: randomOrigin,
+        });
+    });
+}
+
+const tlPage = gsap.timeline({
+    defaults: {
+        duration: animation.duration,
+        ease: animation.ease,
+        stagger: {
+            grid: [1, 11],
+            from: 'random',
+            each: animation.stagger,
+        },
+    },
+});
+
+export const showGridTransitionAnimation = () => {
+    console.log('showGridTransitionAnimation')
+    return new Promise((resolve) => {
+
+        tlPage.to('.pt_box', {
+            scaleY: 1,
+            transformOrigin: '0% 100%',
+            onComplete: resolve,
+        });
+    });
+};
+
+export const hideGridTransitionAnimation = () => {
+    console.log('hideGridTransitionAnimation')
+    // gsap.set(animation.element, { zIndex: 1000 })
+    return new Promise((resolve) => {
+        tlPage.to('.pt_box', {
+            scaleY: 0,
+            transformOrigin: '0% 0%',
+            onComplete: resolve,
+        });
+    });
+};

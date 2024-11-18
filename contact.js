@@ -5,7 +5,7 @@ import {
     addH1HoverAnimations,
     addDarrenH2Animations,
     h1ShineEffect,
-    elemScaleTo1RightToLeft,
+    elemScaleTo1Center,
     yPercentOpacityReturn,
     elemScaleUp
  } from "./commonAnimations.js";
@@ -50,7 +50,7 @@ export const contactAnimations= (container) => {
     const h1Chars = container.querySelectorAll('.page-h1 > .word > .char-wrapper > .char');
 
     gsap.timeline()
-    .add(() => elemScaleTo1RightToLeft(contact.portfolioTextWrapper), 0.35)
+    .add(() => elemScaleTo1Center(contact.portfolioTextWrapper), 0.35)
     .add(() => h1LoadEffect(container), 0.75)
     .add(() => yPercentOpacityReturn(contact.darrenH2), 1.5)
     .add(() => elemScaleUp(contact.hamburger, 1), 2)

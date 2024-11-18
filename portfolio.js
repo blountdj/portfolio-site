@@ -8,7 +8,7 @@ import {
   staggerOpacityAndScaleToOneEffect,
   yPercentOpacityReturn,
   h1ShineEffect,
-  elemScaleTo1RightToLeft,
+  elemScaleTo1Center,
   imageStationaryAnimation,
   moveRightFiveOpacityOne,
   moveLeftFiveOpacityOne,
@@ -99,7 +99,7 @@ export function portfolioAnimate(container) {
     .add(() => moveRightFiveOpacityOne(portfolio.nextArrow), 0.25)
     .add(() =>  moveLeftFiveOpacityOne(portfolio.prevArrow), 0.25)
     .add(() => elemScaleUp(portfolio.firstImage, 1, "back.out(1.7)"), 0.8)
-    .add(() => elemScaleTo1RightToLeft(portfolio.portfolioTextWrapper), 1.0)
+    .add(() => elemScaleTo1Center(portfolio.portfolioTextWrapper), 1.0)
     .add(() => h1LoadEffect(container), 1.4)
 
     .add(() => yPercentOpacityReturn(portfolio.darrenH2), 2.5)

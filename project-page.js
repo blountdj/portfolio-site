@@ -7,7 +7,7 @@ import {
     elemFadeIn,
     yPercentOpacityReturn,
     xPercentOpacityReturn,
-    elemScaleTo1RightToLeft,
+    elemScaleTo1Center,
     elemScaleUp,
     staggerOpacityToOneEffect,
     staggerOpacityAndScaleToOneEffect,
@@ -175,7 +175,7 @@ export const projectPageAnimate = (container) => {
     .add(() => staggerOpacityToOneEffect(project.projectParagraph), 0.5)
     .add(() => staggerOpacityAndScaleToOneEffect(project.projectThumbnails), 0.75)
 
-    .add(() => elemScaleTo1RightToLeft(project.portfolioTextWrapper), 1.75)
+    .add(() => elemScaleTo1Center(project.portfolioTextWrapper), 1.75)
     .add(() => h1LoadEffect(container), 2.0)
     .add(() => xPercentOpacityReturn(project.liveBtn), 2.25)
     .add(() => yPercentOpacityReturn(project.darrenH2), 3)
