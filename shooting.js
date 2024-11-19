@@ -35,9 +35,80 @@ const showOverlay = (elem) => {
     });
 }
 
+const addBlockPositions = () => {
+    let blockPositions;
+    const windowWidth = window.innerWidth;
+    if (windowWidth > 991) {
+        blockPositions = {
+            "block-1": { top: "55%", left: "30%" }, /* green alien */
+            "block-2": { top: "25%", left: "20%" }, /* skull */
+            "block-3": { top: "70%", left: "50%" }, /* devil */ 
+            "block-4": { top: "40%", left: "60%" }, /* saint */
+            "block-5": { top: "30%", left: "30%" }, /* heart eyes */
+            "block-6": { top: "30%", left: "70%" }, /* aliens */
+            "block-7": { top: "50%", left: "30%" }, /* sunglasses */
+            "block-8": { top: "70%", left: "70%" }, /* star eyes */
+            "block-9": { top: "70%", left: "70%" }, /* mind blown */
+            "block-10": { top: "50%", left: "70%" }, /* baby */
+            "block-11": { top: "30%", left: "30%" }, /* portfolio */
+            "block-12": { top: "70%", left: "34%" }, /* about */
+            "block-13": { top: "55%", left: "60%" }, /* designo */
+            "block-14": { top: "42%", left: "35%" }, /* arch */
+            "block-15": { top: "60%", left: "50%" }, /* audiophile */
+            "block-16": { top: "37%", left: "45%" } /* contact */
+        }
+    } else if (windowWidth > 768) {
+        blockPositions = {
+            "block-1": { top: "55%", left: "30%" }, /* green alien */
+            "block-2": { top: "25%", left: "20%" }, /* skull */
+            "block-3": { top: "70%", left: "50%" }, /* devil */ 
+            "block-4": { top: "40%", left: "60%" }, /* saint */
+            "block-5": { top: "30%", left: "30%" }, /* heart eyes */
+            "block-6": { top: "30%", left: "70%" }, /* aliens */
+            "block-7": { top: "50%", left: "15%" }, /* sunglasses */
+            "block-8": { top: "70%", left: "70%" }, /* star eyes */
+            "block-9": { top: "70%", left: "70%" }, /* mind blown */
+            "block-10": { top: "50%", left: "70%" }, /* baby */
+            "block-11": { top: "30%", left: "30%" }, /* portfolio */
+            "block-12": { top: "70%", left: "34%" }, /* about */
+            "block-13": { top: "55%", left: "60%" }, /* designo */
+            "block-14": { top: "42%", left: "35%" }, /* arch */
+            "block-15": { top: "60%", left: "50%" }, /* audiophile */
+            "block-16": { top: "30%", left: "45%" } /* contact */
+        }
+        
+    } else {
+        blockPositions = {
+            "block-1": { top: "55%", left: "30%" }, /* green alien */
+            "block-2": { top: "25%", left: "20%" }, /* skull */
+            "block-3": { top: "70%", left: "50%" }, /* devil */ 
+            "block-4": { top: "40%", left: "60%" }, /* saint */
+            "block-5": { top: "30%", left: "30%" }, /* heart eyes */
+            "block-6": { top: "30%", left: "70%" }, /* aliens */
+            "block-7": { top: "50%", left: "15%" }, /* sunglasses */
+            "block-8": { top: "70%", left: "70%" }, /* star eyes */
+            "block-9": { top: "70%", left: "70%" }, /* mind blown */
+            "block-10": { top: "50%", left: "70%" }, /* baby */
+            "block-11": { top: "30%", left: "30%" }, /* portfolio */
+            "block-12": { top: "70%", left: "34%" }, /* about */
+            "block-13": { top: "55%", left: "60%" }, /* designo */
+            "block-14": { top: "44%", left: "35%" }, /* arch */
+            "block-15": { top: "60%", left: "50%" }, /* audiophile */
+            "block-16": { top: "30%", left: "15%" } /* contact */
+        }
+    }
+    
+    Object.keys(blockPositions).forEach((blockName) => {
+        const block = document.querySelector(`.${blockName}`);
+        const { top, left } = blockPositions[blockName];
+        block.style.top = top;
+        block.style.left = left;
+    });
+}
+
 export const shootingEffect = () => {
     // window.Barba.Pjax.start();
-    
+    addBlockPositions()
     let blocks = document.querySelectorAll(".block");
     let duration = 0.25;
     let stagger = duration;
@@ -87,7 +158,7 @@ export const shootingEffect = () => {
             const y = event.clientY;
             const clickTarget = event.target.closest('.block').dataset.type;
 
-            console.log('clickTarget:', clickTarget)
+            // console.log('clickTarget:', clickTarget)
 
             if (clickTarget === "baddy" || clickTarget === "goody") {
                 let points = clickTarget === "baddy" ? 10 : -10;
@@ -122,31 +193,24 @@ export const shootingEffect = () => {
                     }
                   
                     isSubmitting = true;
-                    console.log('GO!')
                   
                     switch (clickTarget) {
                       case "portfolio":
-                        console.log('PORTFOLIO');
                         barba.go("portfolio");
                         break;
                       case "about":
-                        console.log('ABOUT');
                         barba.go("about");
                         break;
                       case "designo project":
-                        console.log('DESIGNO');
                         barba.go("designo");
                         break;
                       case "arch project":
-                        console.log('ARCH');
                         barba.go("arch-studio");
                         break;
                       case "audiophile project":
-                        console.log('AUDIOPHILE');
                         barba.go("audiophile");
                         break;
                       case "contact":
-                        console.log('CONTACT');
                         barba.go("contact");
                         break;
                       default:
@@ -180,10 +244,4 @@ export const shootingEffect = () => {
             }, 5000);
         });
     });
-
-
 }
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     barba.init();
-//   });

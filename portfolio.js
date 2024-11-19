@@ -1,11 +1,9 @@
-console.log('portfolio.js')
+// console.log('portfolio.js')
 
 import { 
   h1LoadInit, 
   h1LoadEffect,
-  addH1HoverAnimations,
   addDarrenH2Animations,
-  staggerOpacityAndScaleToOneEffect,
   yPercentOpacityReturn,
   h1ShineEffect,
   elemScaleTo1Center,
@@ -13,13 +11,11 @@ import {
   moveRightFiveOpacityOne,
   moveLeftFiveOpacityOne,
   elemScaleUp,
-  // elemScaleUp2
 } from "./commonAnimations.js";
 
 
 let current = 0;
 let directionForward = true;
-
 
 const portfolio = {
   items: null,
@@ -31,9 +27,8 @@ const portfolio = {
   hamburger: null,
 }
 
-
 export function portfolioInit(container) {
-  console.log('portfolioInit')
+  // console.log('portfolioInit')
 
   h1LoadInit(container)
 
@@ -63,7 +58,6 @@ export function portfolioInit(container) {
 
   gsap.set(portfolio.portfolioTextWrapper, {
     scaleX: 0,
-    // opacity: 0,
   })
 
   gsap.set(portfolio.darrenH2, {
@@ -76,28 +70,53 @@ export function portfolioInit(container) {
     scale: 0.0,
   })
 
+  const windowWidth = window.innerWidth;
+  let moveValue = '47%'
+  if (windowWidth < 768) {
+    moveValue = '105%'
+  }
+
   gsap.set(portfolio.prevArrow, {
-    // opacity: 0,
-    left: '47%',
+    left: moveValue,
   })
 
   gsap.set(portfolio.nextArrow, {
-    // opacity: 0,
-    right: '47%',
+    right: moveValue,
   })
+}
 
 
+const arrowsEnter = () => {
+
+  const windowWidth = window.innerWidth;
+  if (windowWidth > 768) {
+    return moveRightFiveOpacityOne(portfolio.nextArrow), moveLeftFiveOpacityOne(portfolio.prevArrow)
+  } else {
+    return gsap.to(portfolio.nextArrow, {
+      right: '35%', 
+      duration: 1.25,
+      ease: "back.inOut(1.7)"
+    }), gsap.to(portfolio.prevArrow, {
+      left: '35%', 
+      duration: 1.25,
+      ease: "back.inOut(1.7)"})
+  }
 }
 
 export function portfolioAnimate(container) {
-    console.log('portfolioAnimate')
+    // console.log('portfolioAnimate')
     
     const h1Chars = container.querySelectorAll('.page-h1 > .word > .char-wrapper > .char');
     const itemCards = container.querySelectorAll('.item-card');
 
+    let nextArrowEnter
+    let prevArrowEnter
+
+    nextArrowEnter, prevArrowEnter = arrowsEnter()
+
     gsap.timeline() 
-    .add(() => moveRightFiveOpacityOne(portfolio.nextArrow), 0.25)
-    .add(() =>  moveLeftFiveOpacityOne(portfolio.prevArrow), 0.25)
+    .add(() => nextArrowEnter, 0.25)
+    .add(() => prevArrowEnter, 0.25)
     .add(() => elemScaleUp(portfolio.firstImage, 1, "back.out(1.7)"), 0.8)
     .add(() => elemScaleTo1Center(portfolio.portfolioTextWrapper), 1.0)
     .add(() => h1LoadEffect(container), 1.4)
@@ -111,9 +130,7 @@ export function portfolioAnimate(container) {
     .add(() => portfolio.nextArrow.addEventListener("click", () => next(portfolio.items)), 3)
     .add(() => portfolio.prevArrow.addEventListener("click", () => prev(portfolio.items)), 3)
     .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 3)
-
 }
-
 
 const animate = {
   in(item) {
@@ -121,7 +138,6 @@ const animate = {
       translateX: directionForward ? "100vw" : "-100vw",
       rotate: directionForward ? 40 : -40,
     })
-
     gsap.to(item, {
       opacity: 1,
       translateX: "0vw",
@@ -132,7 +148,6 @@ const animate = {
   },
 
   out(item) {
-
     gsap.to(item, {
       opacity: 0,
       translateX: directionForward ? "-100vw" : "100vw",
@@ -144,7 +159,6 @@ const animate = {
 };
 
 function updateClasses(items) {
-  console.log('updateClasses')
   items.forEach((item, index) => {
     if (index == current) {
       item.classList.add("is-active");

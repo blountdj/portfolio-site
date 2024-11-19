@@ -2,7 +2,6 @@
 import { 
     h1LoadInit, 
     h1LoadEffect,
-    addH1HoverAnimations,
     addDarrenH2Animations,
     h1ShineEffect,
     elemScaleTo1Center,
@@ -16,7 +15,6 @@ import {
     portfolioTextWrapper: null,
     hamburger: null
   };
-
 
 
  export const contactInit = (container) => {
@@ -33,22 +31,17 @@ import {
 
       gsap.set(contact.portfolioTextWrapper, {
         scaleX: 0,
-        // opacity: 0,
     })
 
     gsap.set(contact.hamburger, {
         opacity: 0,
         scale: 0.0,
     })
-
  }
 
-
 export const contactAnimations= (container) => {
-    console.log('contactAnimations')
-
+    // console.log('contactAnimations')
     const h1Chars = container.querySelectorAll('.page-h1 > .word > .char-wrapper > .char');
-
     gsap.timeline()
     .add(() => elemScaleTo1Center(contact.portfolioTextWrapper), 0.35)
     .add(() => h1LoadEffect(container), 0.75)
@@ -56,5 +49,4 @@ export const contactAnimations= (container) => {
     .add(() => elemScaleUp(contact.hamburger, 1), 2)
     .add(() => addDarrenH2Animations(contact.darrenH2), 2)
     .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 2)
-
 }

@@ -1,7 +1,7 @@
 // console.log('menu')
 
 export const menuInit = (container) => {
-    console.log('menuInit')
+    // console.log('menuInit')
 
     const currentUrl = window.location.href;
     let currentPage = currentUrl.split('/').pop();
@@ -100,7 +100,7 @@ export const menuInit = (container) => {
   
     menuItems.forEach((menuItem) => {
       menuItem.addEventListener('click', (event) => {
-        console.log('menu item click:', menuItem)
+        // console.log('menu item click:', menuItem)
 
         const clickedUrl = event.currentTarget.href;
 

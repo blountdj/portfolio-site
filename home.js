@@ -1,4 +1,4 @@
-console.log('home.js')
+// console.log('home.js')
 
 import { marqueeScrollEffect } from "./marquee.js";
 import { introTextEffect } from "./introTextEffect.js"; 
@@ -17,12 +17,10 @@ import {
     hamburger: null,
     scoreWrapper: null,
     marqueeSection: null,
-  }
+}
 
 
 export const homeInit = (container) => {
-    console.log('homeInit')
-
     return new Promise((resolve) => {
         home.hamburger = container.querySelector('.hamburger')
         home.scoreWrapper = container.querySelector('.score-wrapper')
@@ -39,7 +37,6 @@ export const homeInit = (container) => {
 }
 
 export const homeAnimate = (container, type) => {
-    console.log('homeAnimate')
 
     const introTextWrapper = container.querySelector('.intro-text-wrapper')
 
@@ -81,15 +78,11 @@ const addBtnHoverAnimations = (container) => {
 
         btn.addEventListener('mouseenter', () => {
             gsap.killTweensOf([textElem, emojiElem]); 
-            // pointerEmoji.classList.add('no-animation');
             gsap.to(emojiElem, {
                 y: 0,
                 opacity: 1,
                 duration: 0.5,
                 ease: 'Power4.out',
-                // onComplete: () => {
-                //     thumbsUpEmoji.classList.remove('no-animation');
-                // },
             });
             gsap.to(textElem, {
                 y: 120,
@@ -107,18 +100,12 @@ const addBtnHoverAnimations = (container) => {
                 duration: 0.5,
                 opacity: 0,
                 ease: 'Power4.out',
-                // onStart: () => {
-                //     thumbsUpEmoji.classList.add('no-animation');
-                // },
             });
             gsap.to(textElem, {
                 y: 0,
                 opacity: 1,
                 duration: 0.5,
                 ease: 'Power4.out',
-                // onComplete: () => {
-                //     pointerEmoji.classList.remove('no-animation');
-                // },
             });
         });
     });

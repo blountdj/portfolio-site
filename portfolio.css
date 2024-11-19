@@ -22,5 +22,30 @@ body {
     transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
 } */
 .svg-arrow {
-  height: 0.6rem;
+  height: 0.8rem;
+}
+
+@media only screen and (min-width: 991) and (max-width: 1300px) {
+  .svg-arrow {
+      height: clamp(7.2px, calc(0.450rem + ((1vw - 9.91px) * 2.679)), 12.8px);
+  }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .svg-arrow {
+      height: 0.45rem;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 768px) {
+  .svg-arrow {
+      height: 0.6rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .svg-arrow {
+      height: 0.45rem;
+  }
 }

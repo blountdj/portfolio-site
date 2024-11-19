@@ -1,6 +1,6 @@
 console.log('project-page.js')
 
-import { textSplit, wordsSplit, emojisList } from "./utilities.js";
+// import { textSplit, wordsSplit, emojisList } from "./utilities.js";
 import { 
     h1LoadInit, 
     h1LoadEffect,
@@ -11,7 +11,6 @@ import {
     elemScaleUp,
     staggerOpacityToOneEffect,
     staggerOpacityAndScaleToOneEffect,
-    addH1HoverAnimations,
     addDarrenH2Animations,
     h1ShineEffect,
     imageStationaryAnimation
@@ -31,7 +30,6 @@ import {
     thumbsUpEmoji: null,
     pointerEmoji: null,
   }
-
 
 const addBtnHoverAnimations = (visitSiteBtn, thumbsUpEmoji, pointerEmoji) => {
 
@@ -75,17 +73,16 @@ const addBtnHoverAnimations = (visitSiteBtn, thumbsUpEmoji, pointerEmoji) => {
     });
 }
 
-
 const thumbnailClick = (e, frameOverlay, frameImage, imagePanelText) => {
+    // console.log('thumbnailClick')
     const getSrc = e.srcElement.attributes.src.nodeValue;
-
     const imageText = e.srcElement.getAttribute('data-text');
     
     // TODO -check to see if image is already loaded
     gsap.timeline()
         .to(frameOverlay, {
             duration: 0.3,
-            x: 0,
+            clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
             delay: 0.2,
             ease: 'Power4.out',
             onComplete: () => {
@@ -95,16 +92,15 @@ const thumbnailClick = (e, frameOverlay, frameImage, imagePanelText) => {
         })
         .to(frameOverlay, {
             duration: 0.5,
-            x: '-101%',
+            clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)',
             ease: 'Power4.out',
             onComplete: () => {
-                gsap.set(frameOverlay, { x: '101%' });
+                gsap.set(frameOverlay, { clipPath: 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)' });
             },
         });
 };
 
 const addEventListeners = (galleryImages, frameOverlay, frameImage, imagePanelText) => {
-   
     galleryImages.forEach((el) => {
         el.addEventListener('click', (e) => thumbnailClick(e, frameOverlay, frameImage, imagePanelText));
     });
@@ -112,7 +108,7 @@ const addEventListeners = (galleryImages, frameOverlay, frameImage, imagePanelTe
 
 
 export const projectPageInit = (container) => {
-    console.log('projectPageInit')
+    // console.log('projectPageInit')
     h1LoadInit(container)
 
     project.hamburger = container.querySelector('.hamburger');
@@ -139,7 +135,6 @@ export const projectPageInit = (container) => {
 
     gsap.set(project.portfolioTextWrapper, {
         scaleX: 0,
-        // opacity: 0,
     })
 
     gsap.set([project.imagePanelText, project.darrenH2], {
@@ -159,7 +154,7 @@ export const projectPageInit = (container) => {
 };
 
 export const projectPageAnimate = (container) => {
-    console.log('projectPageAnimate')
+    // console.log('projectPageAnimate')
 
     const frameOverlay = container.querySelector('.project-image-frame-overlay');
     const frameImage = container.querySelector('.image-panel-slide-item-image');

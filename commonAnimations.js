@@ -3,18 +3,15 @@ import { textSplit, wordsSplit, emojisList } from "./utilities.js";
 
 
 export const h1LoadInit = (container) => {
-    // console.log('h1LoadInit')
 
     const h1 = container.querySelector('h1')
     textSplit(h1)
 
-    // Get the existing "char" element
     const wordElems = container.querySelectorAll('.page-h1 > .word');
     gsap.set(wordElems, {
         display: "flex"
     });
 
-    // console.log('charElements', charElements)
     wordElems.forEach(wordElem => {
         const charElements = wordElem.querySelectorAll('.page-h1 > .word >.char');
         gsap.set(charElements, {
@@ -23,15 +20,10 @@ export const h1LoadInit = (container) => {
         });
 
         charElements.forEach(charElement => {
-            // Create a new div element
             const newDiv = document.createElement('div');
             newDiv.classList.add('char-wrapper')
-
-            // Append the existing "char" element as a child of the new div
             newDiv.appendChild(charElement);
             wordElem.appendChild(newDiv)
-            // Replace the original "char" element with the new div
-            // charElement.parentNode.replaceChild(newDiv, charElement);
         })
     })
 
@@ -68,16 +60,6 @@ export const elemScaleUp = (elem, scaleTo, ease='power2.out') => {
         ease: ease,
     })
 }
-
-
-// export const elemScaleUp2 = (elem, scaleTo) => {
-//     gsap.to(elem, {
-//         scale: scaleTo,
-//         opacity: 1,
-//         duration: 0.75,
-//         ease: "back.inOut(1.7)",
-//     })
-// }
 
 export const elemScaleTo1Center = (elem) => {
     gsap.to(elem, {
@@ -291,7 +273,7 @@ const tlPage = gsap.timeline({
 });
 
 export const showGridTransitionAnimation = () => {
-    console.log('showGridTransitionAnimation')
+    // console.log('showGridTransitionAnimation')
     return new Promise((resolve) => {
 
         tlPage.to('.pt_box', {
@@ -303,8 +285,7 @@ export const showGridTransitionAnimation = () => {
 };
 
 export const hideGridTransitionAnimation = () => {
-    console.log('hideGridTransitionAnimation')
-    // gsap.set(animation.element, { zIndex: 1000 })
+    // console.log('hideGridTransitionAnimation')
     return new Promise((resolve) => {
         tlPage.to('.pt_box', {
             scaleY: 0,

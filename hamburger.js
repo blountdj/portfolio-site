@@ -6,7 +6,7 @@ export const hamburgerInit = (container) => {
 
     // console.log('hamburgerInit');
     const hamburger = container.querySelector('.hamburger');
-    const spans = Array(3).fill().map(() => {
+    Array(3).fill().map(() => {
         const span = document.createElement('span');
         hamburger.appendChild(span);
         return span;
@@ -30,5 +30,3 @@ export const hamburgerInit = (container) => {
         isMenuOpen = !isMenuOpen;
     });
 };
-
-// hamburgerInit(document)

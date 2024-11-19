@@ -31,7 +31,6 @@ import {
 
       gsap.set(about.portfolioTextWrapper, {
         scaleX: 0,
-        // opacity: 0,
     })
 
     gsap.set(about.hamburger, {
@@ -43,7 +42,7 @@ import {
 
 
  export const aboutAnimations= (container) => {
-    console.log('aboutAnimations')
+    // console.log('aboutAnimations')
 
     const h1Chars = container.querySelectorAll('.page-h1 > .word > .char-wrapper > .char');
 
