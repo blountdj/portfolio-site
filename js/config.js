@@ -1,6 +1,7 @@
 export const CONFIG = {
   barbaDebug: false,
-  path: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v3/',
+  // path: 'http://127.0.0.1:5500/',
+  path: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v4/',
   // jsPath: 'js/',
   jsPath: 'min/js/',
   // min: '',
