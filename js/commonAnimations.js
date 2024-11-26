@@ -1,4 +1,5 @@
 
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v2/min/js/config.min.js";
 const { textSplit, wordsSplit, emojisList } = await import(`${CONFIG.path}${CONFIG.jsPath}utilities${CONFIG.min}.js`);
 
 export const h1LoadInit = (container) => {
@@ -37,7 +38,7 @@ export const h1LoadEffect = (container) => {
         stagger: {
             each: 0.075,
             from: "random"
-        },  
+        },
     })
 }
 
@@ -49,7 +50,7 @@ export const elemFadeIn = (elem) => {
     })
 }
 
-export const elemScaleUp = (elem, scaleTo, ease='power2.out') => {
+export const elemScaleUp = (elem, scaleTo, ease = 'power2.out') => {
     gsap.to(elem, {
         scale: scaleTo,
         opacity: 1,
@@ -102,7 +103,7 @@ export const staggerOpacityToOneEffect = (elems) => {
             each: 0.075,
             // from: "random"
         },
-        
+
     })
 }
 
@@ -116,7 +117,7 @@ export const staggerOpacityAndScaleToOneEffect = (elems) => {
             each: 0.075,
             // from: "random"
         },
-        
+
     })
 }
 
@@ -148,36 +149,36 @@ export const addDarrenH2Animations = (darrenH2) => {
     wordsSplit(heading)
 
     const h2Emoji = darrenH2.querySelector('.h2-emoji');
-    gsap.set(h2Emoji, {opacity: 0, scale: 0.0})
+    gsap.set(h2Emoji, { opacity: 0, scale: 0.0 })
 
     const wordElems = heading.querySelectorAll('.word');
     wordElems.forEach(wordElem => {
         wordElem.addEventListener('mouseenter', () => {
             h2Emoji.textContent = emojisList[Math.floor(Math.random() * emojisList.length)];
-            gsap.to(h2Emoji, {opacity: 1, scale: 1, duration: 0.1, ease: 'Power4.inOut'})
+            gsap.to(h2Emoji, { opacity: 1, scale: 1, duration: 0.1, ease: 'Power4.inOut' })
         })
 
         wordElem.addEventListener('mouseleave', () => {
-            gsap.to(h2Emoji, {opacity: 0, scale: 0, duration: 0.1, ease: 'Power4.inOut'})
+            gsap.to(h2Emoji, { opacity: 0, scale: 0, duration: 0.1, ease: 'Power4.inOut' })
         })
-    })     
+    })
 }
 
-export const h1ShineEffect = (h1Chars) => { 
+export const h1ShineEffect = (h1Chars) => {
     h1Chars.forEach((char, index) => {
-      setTimeout(() => {
-        gsap.timeline()
-          .add(gsap.to(char, {
-            textShadow: '0 0 16px var(--lighter-green)',
-            duration: 0.14,
-            ease: 'elastic.out(1, 0.3)'
-            }, 0))
-          .add(gsap.to(char, {
-              textShadow: '0 0 7px var(--lighter-green)',
-              duration: 0.14,
-              ease: 'elastic.out(1, 0.3)'
-            }, 0.2))
-        }, index * 40); 
+        setTimeout(() => {
+            gsap.timeline()
+                .add(gsap.to(char, {
+                    textShadow: '0 0 16px var(--lighter-green)',
+                    duration: 0.14,
+                    ease: 'elastic.out(1, 0.3)'
+                }, 0))
+                .add(gsap.to(char, {
+                    textShadow: '0 0 7px var(--lighter-green)',
+                    duration: 0.14,
+                    ease: 'elastic.out(1, 0.3)'
+                }, 0.2))
+        }, index * 40);
     });
 }
 
@@ -204,7 +205,7 @@ export const moveLeftFiveOpacityOne = (elem) => {
 export const imageStationaryAnimation = (elems) => {
 
     let tl = gsap.timeline({ repeat: -1, yoyo: true, ease: 'power1.inOut' });
-  
+
     if (elems.length > 0) {
         elems.forEach(elem => {
             tl.to(elem, {
@@ -220,7 +221,7 @@ export const imageStationaryAnimation = (elems) => {
             duration: 0.5
         });
     }
-  };
+};
 
 
 /* Transition Animation */
