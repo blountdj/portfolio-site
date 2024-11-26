@@ -1,8 +1,9 @@
-console.log('project-page.js')
+// console.log('project-page.js')
 
-// import { textSplit, wordsSplit, emojisList } from "./utilities.js";
-import { 
-    h1LoadInit, 
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v1/min/js/config.min.js";
+
+const {
+    h1LoadInit,
     h1LoadEffect,
     elemFadeIn,
     yPercentOpacityReturn,
@@ -14,10 +15,10 @@ import {
     addDarrenH2Animations,
     h1ShineEffect,
     imageStationaryAnimation
- } from "./commonAnimations.js";
+} = await import(`${CONFIG.path}${CONFIG.jsPath}commonAnimations${CONFIG.min}.js`);
 
 
- const project = {
+const project = {
     items: null,
     liveBtn: null,
     portfolioTextWrapper: null,
@@ -29,12 +30,12 @@ import {
     projectParagraph: null,
     thumbsUpEmoji: null,
     pointerEmoji: null,
-  }
+}
 
 const addBtnHoverAnimations = (visitSiteBtn, thumbsUpEmoji, pointerEmoji) => {
 
     visitSiteBtn.addEventListener('mouseenter', () => {
-        gsap.killTweensOf([thumbsUpEmoji, pointerEmoji]); 
+        gsap.killTweensOf([thumbsUpEmoji, pointerEmoji]);
         pointerEmoji.classList.add('no-animation');
         gsap.to(thumbsUpEmoji, {
             yPercent: 0,
@@ -52,7 +53,7 @@ const addBtnHoverAnimations = (visitSiteBtn, thumbsUpEmoji, pointerEmoji) => {
     });
 
     visitSiteBtn.addEventListener('mouseleave', () => {
-        gsap.killTweensOf([thumbsUpEmoji, pointerEmoji]); 
+        gsap.killTweensOf([thumbsUpEmoji, pointerEmoji]);
         gsap.to(thumbsUpEmoji, {
             yPercent: 600,
             duration: 0.5,
@@ -77,7 +78,7 @@ const thumbnailClick = (e, frameOverlay, frameImage, imagePanelText) => {
     // console.log('thumbnailClick')
     const getSrc = e.srcElement.attributes.src.nodeValue;
     const imageText = e.srcElement.getAttribute('data-text');
-    
+
     // TODO -check to see if image is already loaded
     gsap.timeline()
         .to(frameOverlay, {
@@ -105,7 +106,6 @@ const addEventListeners = (galleryImages, frameOverlay, frameImage, imagePanelTe
         el.addEventListener('click', (e) => thumbnailClick(e, frameOverlay, frameImage, imagePanelText));
     });
 };
-
 
 export const projectPageInit = (container) => {
     // console.log('projectPageInit')
@@ -141,7 +141,7 @@ export const projectPageInit = (container) => {
         yPercent: -105,
         opacity: 0,
     })
-    
+
     gsap.set(project.thumbsUpEmoji, {
         yPercent: 650,
     })
@@ -160,28 +160,53 @@ export const projectPageAnimate = (container) => {
     const frameImage = container.querySelector('.image-panel-slide-item-image');
 
     const h1Chars = container.querySelectorAll('.page-h1 > .word > .char-wrapper > .char');
-    
+
     const thumbNails = container.querySelectorAll('.thumbnail-image-wrapper');
 
-    gsap.timeline()
-    .add(() => elemScaleUp(project.frameFigure, 1), 0.3)
-    .add(() => elemFadeIn(project.projectH2), 0.5)
-    .add(() => yPercentOpacityReturn(project.imagePanelText), 0.75)
-    .add(() => staggerOpacityToOneEffect(project.projectParagraph), 0.5)
-    .add(() => staggerOpacityAndScaleToOneEffect(project.projectThumbnails), 0.75)
+    const screenWidth = window.innerWidth;
+    if (screenWidth > 991) {
+        gsap.timeline()
+            .add(() => elemScaleUp(project.frameFigure, 1), 0.3)
+            .add(() => elemFadeIn(project.projectH2), 0.5)
+            .add(() => yPercentOpacityReturn(project.imagePanelText), 0.75)
+            .add(() => staggerOpacityToOneEffect(project.projectParagraph), 0.5)
+            .add(() => staggerOpacityAndScaleToOneEffect(project.projectThumbnails), 0.75)
 
-    .add(() => elemScaleTo1Center(project.portfolioTextWrapper), 1.75)
-    .add(() => h1LoadEffect(container), 2.0)
-    .add(() => xPercentOpacityReturn(project.liveBtn), 2.25)
-    .add(() => yPercentOpacityReturn(project.darrenH2), 3)
+            .add(() => elemScaleTo1Center(project.portfolioTextWrapper), 1.75)
+            .add(() => h1LoadEffect(container), 2.0)
+            .add(() => xPercentOpacityReturn(project.liveBtn), 2.25)
+            .add(() => yPercentOpacityReturn(project.darrenH2), 3)
 
-    .add(() => elemFadeIn(project.hamburger), 3)
+            .add(() => elemFadeIn(project.hamburger), 3)
 
-    .add(() => addBtnHoverAnimations(project.liveBtn, project.thumbsUpEmoji, project.pointerEmoji), 3)
-    .add(() => addEventListeners(project.projectThumbnails, frameOverlay, frameImage, project.imagePanelText), 3)
-    // .add(() => addH1HoverAnimations(h1Chars), 3)
-    .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 3)
-    .add(() => addDarrenH2Animations(project.darrenH2), 3)
-    .add(() => imageStationaryAnimation(thumbNails), 3)
+            .add(() => addBtnHoverAnimations(project.liveBtn, project.thumbsUpEmoji, project.pointerEmoji), 3)
+            .add(() => addEventListeners(project.projectThumbnails, frameOverlay, frameImage, project.imagePanelText), 3)
+            // .add(() => addH1HoverAnimations(h1Chars), 3)
+            .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 3)
+            .add(() => addDarrenH2Animations(project.darrenH2), 3)
+            .add(() => imageStationaryAnimation(thumbNails), 3)
+    } else {
+        gsap.timeline()
 
+            .add(() => elemFadeIn(project.projectH2), 0.3)
+            .add(() => staggerOpacityToOneEffect(project.projectParagraph), 0.3)
+            .add(() => staggerOpacityAndScaleToOneEffect(project.projectThumbnails), 0.75)
+
+            .add(() => yPercentOpacityReturn(project.imagePanelText), 1.75)
+            .add(() => elemScaleUp(project.frameFigure, 1), 1.75)
+
+            .add(() => elemScaleTo1Center(project.portfolioTextWrapper), 2.15)
+            .add(() => h1LoadEffect(container), 2.25)
+            .add(() => xPercentOpacityReturn(project.liveBtn), 3.5)
+            .add(() => yPercentOpacityReturn(project.darrenH2), 3.8)
+
+            .add(() => elemFadeIn(project.hamburger), 4.25)
+
+            .add(() => addBtnHoverAnimations(project.liveBtn, project.thumbsUpEmoji, project.pointerEmoji), 3)
+            .add(() => addEventListeners(project.projectThumbnails, frameOverlay, frameImage, project.imagePanelText), 3)
+            // .add(() => addH1HoverAnimations(h1Chars), 3)
+            .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 3)
+            .add(() => addDarrenH2Animations(project.darrenH2), 3)
+            .add(() => imageStationaryAnimation(thumbNails), 3)
+    }
 }

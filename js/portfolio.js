@@ -1,7 +1,9 @@
 // console.log('portfolio.js')
 
-import { 
-  h1LoadInit, 
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v1/min/js/config.min.js";
+
+const {
+  h1LoadInit,
   h1LoadEffect,
   addDarrenH2Animations,
   yPercentOpacityReturn,
@@ -11,7 +13,7 @@ import {
   moveRightFiveOpacityOne,
   moveLeftFiveOpacityOne,
   elemScaleUp,
-} from "./commonAnimations.js";
+} = await import(`${CONFIG.path}${CONFIG.jsPath}commonAnimations${CONFIG.min}.js`);
 
 
 let current = 0;
@@ -93,28 +95,29 @@ const arrowsEnter = () => {
     return moveRightFiveOpacityOne(portfolio.nextArrow), moveLeftFiveOpacityOne(portfolio.prevArrow)
   } else {
     return gsap.to(portfolio.nextArrow, {
-      right: '35%', 
+      right: '35%',
       duration: 1.25,
       ease: "back.inOut(1.7)"
     }), gsap.to(portfolio.prevArrow, {
-      left: '35%', 
+      left: '35%',
       duration: 1.25,
-      ease: "back.inOut(1.7)"})
+      ease: "back.inOut(1.7)"
+    })
   }
 }
 
 export function portfolioAnimate(container) {
-    // console.log('portfolioAnimate')
-    
-    const h1Chars = container.querySelectorAll('.page-h1 > .word > .char-wrapper > .char');
-    const itemCards = container.querySelectorAll('.item-card');
+  // console.log('portfolioAnimate')
 
-    let nextArrowEnter
-    let prevArrowEnter
+  const h1Chars = container.querySelectorAll('.page-h1 > .word > .char-wrapper > .char');
+  const itemCards = container.querySelectorAll('.item-card');
 
-    nextArrowEnter, prevArrowEnter = arrowsEnter()
+  let nextArrowEnter
+  let prevArrowEnter
 
-    gsap.timeline() 
+  nextArrowEnter, prevArrowEnter = arrowsEnter()
+
+  gsap.timeline()
     .add(() => nextArrowEnter, 0.25)
     .add(() => prevArrowEnter, 0.25)
     .add(() => elemScaleUp(portfolio.firstImage, 1, "back.out(1.7)"), 0.8)

@@ -96,8 +96,6 @@ export const menuInit = (container) => {
       }
   });
 
-
-  
     menuItems.forEach((menuItem) => {
       menuItem.addEventListener('click', (event) => {
         // console.log('menu item click:', menuItem)

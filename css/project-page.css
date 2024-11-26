@@ -48,8 +48,12 @@ body {
   transition: scale 0.3s ease-in-out;
 }
 
-.image-panel-slide-item-image:hover {
-  scale: 1.05;
+
+
+@media screen and (min-width: 991px) {
+  .image-panel-slide-item-image:hover {
+    scale: 1.05;
+  }
 }
 
 .thumbnail-image-wrapper:hover .thumbnail-corner {

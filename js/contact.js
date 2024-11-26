@@ -1,23 +1,25 @@
 
-import { 
-    h1LoadInit, 
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v1/min/js/config.min.js";
+
+const {
+    h1LoadInit,
     h1LoadEffect,
     addDarrenH2Animations,
     h1ShineEffect,
     elemScaleTo1Center,
     yPercentOpacityReturn,
     elemScaleUp
- } from "./commonAnimations.js";
+} = await import(`${CONFIG.path}${CONFIG.jsPath}commonAnimations${CONFIG.min}.js`);
 
 
- const contact = {
+const contact = {
     darrenH2: null,
     portfolioTextWrapper: null,
     hamburger: null
-  };
+};
 
 
- export const contactInit = (container) => {
+export const contactInit = (container) => {
     h1LoadInit(container)
 
     contact.darrenH2 = container.querySelector('.h2-wrapper');
@@ -29,7 +31,7 @@ import {
         opacity: 0,
     })
 
-      gsap.set(contact.portfolioTextWrapper, {
+    gsap.set(contact.portfolioTextWrapper, {
         scaleX: 0,
     })
 
@@ -37,16 +39,16 @@ import {
         opacity: 0,
         scale: 0.0,
     })
- }
+}
 
-export const contactAnimations= (container) => {
+export const contactAnimations = (container) => {
     // console.log('contactAnimations')
     const h1Chars = container.querySelectorAll('.page-h1 > .word > .char-wrapper > .char');
     gsap.timeline()
-    .add(() => elemScaleTo1Center(contact.portfolioTextWrapper), 0.35)
-    .add(() => h1LoadEffect(container), 0.75)
-    .add(() => yPercentOpacityReturn(contact.darrenH2), 1.5)
-    .add(() => elemScaleUp(contact.hamburger, 1), 2)
-    .add(() => addDarrenH2Animations(contact.darrenH2), 2)
-    .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 2)
+        .add(() => elemScaleTo1Center(contact.portfolioTextWrapper), 0.35)
+        .add(() => h1LoadEffect(container), 0.75)
+        .add(() => yPercentOpacityReturn(contact.darrenH2), 1.5)
+        .add(() => elemScaleUp(contact.hamburger, 1), 2)
+        .add(() => addDarrenH2Animations(contact.darrenH2), 2)
+        .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 2)
 }

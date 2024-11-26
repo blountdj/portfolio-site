@@ -1,14 +1,15 @@
 
-import { 
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v1/min/js/config.min.js";
+
+const { 
     h1LoadInit, 
     h1LoadEffect,
-    addH1HoverAnimations,
     addDarrenH2Animations,
     h1ShineEffect,
     elemScaleTo1Center,
     yPercentOpacityReturn,
     elemScaleUp
- } from "./commonAnimations.js";
+ } = await import(`${CONFIG.path}${CONFIG.jsPath}commonAnimations${CONFIG.min}.js`);
 
 
  const about = {
@@ -37,15 +38,11 @@ import {
         opacity: 0,
         scale: 0.0,
     })
-
  }
-
 
  export const aboutAnimations= (container) => {
     // console.log('aboutAnimations')
-
     const h1Chars = container.querySelectorAll('.page-h1 > .word > .char-wrapper > .char');
-
     gsap.timeline()
     .add(() => elemScaleTo1Center(about.portfolioTextWrapper), 0.35)
     .add(() => h1LoadEffect(container), 0.75)
@@ -53,5 +50,4 @@ import {
     .add(() => elemScaleUp(about.hamburger, 1), 2)
     .add(() => addDarrenH2Animations(about.darrenH2), 2)
     .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 2)
-
 }

@@ -177,7 +177,6 @@ export const shootingEffect = () => {
                 const nextPageTextElem = overlay.querySelector('.home-popup-text.is-next-page')
                 nextPageTextElem.textContent = `${clickTarget.charAt(0).toUpperCase() + clickTarget.slice(1)} page?`
                 
-
                 overlayCloseBtn.addEventListener('click', () => {
                     animationTimeline.resume();
                     gsap.to(overlay, {
@@ -221,7 +220,6 @@ export const shootingEffect = () => {
                   });
             }
             
-
             if (previousGif) {
                 previousGif.remove();
             }

@@ -1,6 +1,5 @@
 
-import { textSplit, wordsSplit, emojisList } from "./utilities.js";
-
+const { textSplit, wordsSplit, emojisList } = await import(`${CONFIG.path}${CONFIG.jsPath}utilities${CONFIG.min}.js`);
 
 export const h1LoadInit = (container) => {
 
@@ -26,7 +25,6 @@ export const h1LoadInit = (container) => {
             wordElem.appendChild(newDiv)
         })
     })
-
 }
 
 export const h1LoadEffect = (container) => {
@@ -39,8 +37,7 @@ export const h1LoadEffect = (container) => {
         stagger: {
             each: 0.075,
             from: "random"
-        },
-        
+        },  
     })
 }
 
