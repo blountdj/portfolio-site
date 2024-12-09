@@ -1,7 +1,7 @@
 export const CONFIG = {
   barbaDebug: false,
   // path: './',
-  path: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v7/',
+  path: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v8/',
   // pathAdd: 'src/js/',
   // jsFolder: '',
   // jsFolder: '',
