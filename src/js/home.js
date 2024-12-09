@@ -1,7 +1,7 @@
 // console.log('home.js')
 
-// import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v5/min/js/config.js";
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v8/min/js/CONFIG.min.js";
+// import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v9/min/js/config.js";
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v9/min/js/CONFIG.min.js";
 
 const { marqueeScrollEffect } = await import(`${CONFIG.path}${CONFIG.jsFolder}marquee${CONFIG.jsPostFix}.js`);
 const { introTextEffect } = await import(`${CONFIG.path}${CONFIG.jsFolder}introTextEffect${CONFIG.jsPostFix}.js`);
