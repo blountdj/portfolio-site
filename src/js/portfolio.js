@@ -1,7 +1,7 @@
 // console.log('portfolio.js')
 
 // import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v5/min/js/CONFIG.jsPostFix.js";
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v6/min/js/CONFIG.jsPostFix.min.js";
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v7/min/js/CONFIG.jsPostFix.min.js";
 
 const {
   h1LoadInit,

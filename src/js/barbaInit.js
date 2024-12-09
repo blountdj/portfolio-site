@@ -1,6 +1,6 @@
 // console.log('barbaInit.js loaded')
 
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v6/min/js/CONFIG.jsPostFix.min.js";
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v7/min/js/CONFIG.min.js";
 
 const { hamburgerInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}hamburger${CONFIG.jsPostFix}.js`);
 const { menuInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}menu${CONFIG.jsPostFix}.js`);
