@@ -1,33 +1,33 @@
 // console.log('barbaInit.js loaded')
 
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v3/min/js/config.min.js";
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v6/min/js/CONFIG.jsPostFix.min.js";
 
-const { hamburgerInit } = await import(`${CONFIG.path}${CONFIG.jsPath}hamburger${CONFIG.min}.js`);
-const { menuInit } = await import(`${CONFIG.path}${CONFIG.jsPath}menu${CONFIG.min}.js`);
-const { portfolioInit, portfolioAnimate } = await import(`${CONFIG.path}${CONFIG.jsPath}portfolio${CONFIG.min}.js`);
-const { homeInit, homeAnimate } = await import(`${CONFIG.path}${CONFIG.jsPath}home${CONFIG.min}.js`);
-const { projectPageAnimate, projectPageInit } = await import(`${CONFIG.path}${CONFIG.jsPath}project-page${CONFIG.min}.js`);
-const { aboutInit, aboutAnimations } = await import(`${CONFIG.path}${CONFIG.jsPath}about${CONFIG.min}.js`);
-const { contactInit, contactAnimations } = await import(`${CONFIG.path}${CONFIG.jsPath}contact${CONFIG.min}.js`);
+const { hamburgerInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}hamburger${CONFIG.jsPostFix}.js`);
+const { menuInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}menu${CONFIG.jsPostFix}.js`);
+const { portfolioInit, portfolioAnimate } = await import(`${CONFIG.path}${CONFIG.jsFolder}portfolio${CONFIG.jsPostFix}.js`);
+const { homeInit, homeAnimate } = await import(`${CONFIG.path}${CONFIG.jsFolder}home${CONFIG.jsPostFix}.js`);
+const { projectPageAnimate, projectPageInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}project-page${CONFIG.jsPostFix}.js`);
+const { aboutInit, aboutAnimations } = await import(`${CONFIG.path}${CONFIG.jsFolder}about${CONFIG.jsPostFix}.js`);
+const { contactInit, contactAnimations } = await import(`${CONFIG.path}${CONFIG.jsFolder}contact${CONFIG.jsPostFix}.js`);
 
 const {
     addFilesCssToBody,
     removeCssFilesFromBody,
-} = await import(`${CONFIG.path}${CONFIG.jsPath}utilities${CONFIG.min}.js`);
+} = await import(`${CONFIG.path}${CONFIG.jsFolder}utilities${CONFIG.jsPostFix}.js`);
 
 const {
     elemFadeOut,
     initGridTransitionAnimation,
     showGridTransitionAnimation,
     hideGridTransitionAnimation
-} = await import(`${CONFIG.path}${CONFIG.jsPath}commonAnimations${CONFIG.min}.js`);
+} = await import(`${CONFIG.path}${CONFIG.jsFolder}commonAnimations${CONFIG.jsPostFix}.js`);
 
 
-const homeCssFileUrl = `https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v3/min/css/home.min.css`
-const portfolioCssFileUrl = `https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v3/min/css/portfolio.min.css`
-const projectsCssFileUrl = `https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v3/min/css/project-page.min.css`
-const aboutCssFileUrl = `https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v3/min/css/about.min.css`
-const contactCssFileUrl = `https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v3/min/css/contact.min.css`
+const homeCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/home${CONFIG.cssPostFix}.css`
+const portfolioCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/portfolio${CONFIG.cssPostFix}.css`
+const projectsCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/project-page.min${CONFIG.cssPostFix}.css`
+const aboutCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/about.min${CONFIG.cssPostFix}.css`
+const contactCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/contact.min${CONFIG.cssPostFix}.css`
 
 
 const animationFadeInEnter = ((container) => {

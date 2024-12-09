@@ -1,0 +1,9 @@
+.w-inline-block {
+    text-decoration: none;
+}
+
+.pt_box {
+    position: relative;
+    background-color: var(--darker-green);
+    transform: scaleY(0);
+} 

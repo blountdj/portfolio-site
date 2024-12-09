@@ -1,6 +1,7 @@
 // console.log('project-page.js')
 
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v5/min/js/config.min.js";
+// import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v5/min/js/CONFIG.jsPostFix.js";
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v6/min/js/CONFIG.jsPostFix.min.js";
 
 const {
     h1LoadInit,
@@ -15,7 +16,7 @@ const {
     addDarrenH2Animations,
     h1ShineEffect,
     imageStationaryAnimation
-} = await import(`${CONFIG.path}${CONFIG.jsPath}commonAnimations${CONFIG.min}.js`);
+} = await import(`${CONFIG.path}${CONFIG.jsFolder}commonAnimations${CONFIG.jsPostFix}.js`);
 
 
 const project = {

@@ -55,7 +55,7 @@ const addBlockPositions = () => {
             "block-13": { top: "55%", left: "60%" }, /* designo */
             "block-14": { top: "42%", left: "35%" }, /* arch */
             "block-15": { top: "60%", left: "50%" }, /* audiophile */
-            "block-16": { top: "37%", left: "45%" } /* contact */
+            "block-16": { top: "32%", left: "45%" } /* contact */
         }
     } else if (windowWidth > 768) {
         blockPositions = {
@@ -92,7 +92,7 @@ const addBlockPositions = () => {
             "block-11": { top: "30%", left: "30%" }, /* portfolio */
             "block-12": { top: "70%", left: "34%" }, /* about */
             "block-13": { top: "55%", left: "60%" }, /* designo */
-            "block-14": { top: "44%", left: "35%" }, /* arch */
+            "block-14": { top: "44%", left: "24%" }, /* arch */
             "block-15": { top: "60%", left: "50%" }, /* audiophile */
             "block-16": { top: "30%", left: "15%" } /* contact */
         }
@@ -175,7 +175,7 @@ export const shootingEffect = () => {
 
                 // Update text on overlay
                 const nextPageTextElem = overlay.querySelector('.home-popup-text.is-next-page')
-                nextPageTextElem.textContent = `${clickTarget.charAt(0).toUpperCase() + clickTarget.slice(1)} page?`
+                nextPageTextElem.textContent = `Go to ${clickTarget.charAt(0).toUpperCase() + clickTarget.slice(1)} page?`
                 
                 overlayCloseBtn.addEventListener('click', () => {
                     animationTimeline.resume();

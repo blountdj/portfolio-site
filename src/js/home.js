@@ -1,18 +1,19 @@
 // console.log('home.js')
 
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v5/min/js/config.min.js";
+// import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v5/min/js/CONFIG.jsPostFix.js";
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v6/min/js/CONFIG.jsPostFix.min.js";
 
-const { marqueeScrollEffect } = await import(`${CONFIG.path}${CONFIG.jsPath}marquee${CONFIG.min}.js`);
-const { introTextEffect } = await import(`${CONFIG.path}${CONFIG.jsPath}introTextEffect${CONFIG.min}.js`);
-const { cursorInit } = await import(`${CONFIG.path}${CONFIG.jsPath}cursor${CONFIG.min}.js`);
-const { shootingEffect } = await import(`${CONFIG.path}${CONFIG.jsPath}shooting${CONFIG.min}.js`);
+const { marqueeScrollEffect } = await import(`${CONFIG.path}${CONFIG.jsFolder}marquee${CONFIG.jsPostFix}.js`);
+const { introTextEffect } = await import(`${CONFIG.path}${CONFIG.jsFolder}introTextEffect${CONFIG.jsPostFix}.js`);
+const { cursorInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}cursor${CONFIG.jsPostFix}.js`);
+const { shootingEffect } = await import(`${CONFIG.path}${CONFIG.jsFolder}shooting${CONFIG.jsPostFix}.js`);
 
 const {
     elemFadeIn,
     elemFadeOut,
     yPercentOpacityReturn,
     elemScaleUp
-} = await import(`${CONFIG.path}${CONFIG.jsPath}commonAnimations${CONFIG.min}.js`);
+} = await import(`${CONFIG.path}${CONFIG.jsFolder}commonAnimations${CONFIG.jsPostFix}.js`);
 
 
 const home = {
@@ -67,6 +68,7 @@ export const homeAnimate = (container, type) => {
             .add(() => addBtnHoverAnimations(container), 0.75)
     }
 }
+
 
 const addBtnHoverAnimations = (container) => {
 

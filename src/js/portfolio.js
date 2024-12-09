@@ -1,6 +1,7 @@
 // console.log('portfolio.js')
 
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v5/min/js/config.min.js";
+// import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v5/min/js/CONFIG.jsPostFix.js";
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v6/min/js/CONFIG.jsPostFix.min.js";
 
 const {
   h1LoadInit,
@@ -13,7 +14,7 @@ const {
   moveRightFiveOpacityOne,
   moveLeftFiveOpacityOne,
   elemScaleUp,
-} = await import(`${CONFIG.path}${CONFIG.jsPath}commonAnimations${CONFIG.min}.js`);
+} = await import(`${CONFIG.path}${CONFIG.jsFolder}commonAnimations${CONFIG.jsPostFix}.js`);
 
 
 let current = 0;
@@ -95,11 +96,11 @@ const arrowsEnter = () => {
     return moveRightFiveOpacityOne(portfolio.nextArrow), moveLeftFiveOpacityOne(portfolio.prevArrow)
   } else {
     return gsap.to(portfolio.nextArrow, {
-      right: '35%',
+      right: '36%',
       duration: 1.25,
       ease: "back.inOut(1.7)"
     }), gsap.to(portfolio.prevArrow, {
-      left: '35%',
+      left: '29%',
       duration: 1.25,
       ease: "back.inOut(1.7)"
     })
@@ -127,7 +128,7 @@ export function portfolioAnimate(container) {
     .add(() => yPercentOpacityReturn(portfolio.darrenH2), 2.5)
     .add(() => elemScaleUp(portfolio.hamburger, 1), 2.5)
     .add(() => addDarrenH2Animations(portfolio.darrenH2), 3)
-    .add(() => arrowAnimations(container), 3)
+    // .add(() => arrowAnimations(container), 3)
     .add(() => imageStationaryAnimation(itemCards), 3)
     .add(() => imageHoverAnimation(container), 3)
     .add(() => portfolio.nextArrow.addEventListener("click", () => next(portfolio.items)), 3)

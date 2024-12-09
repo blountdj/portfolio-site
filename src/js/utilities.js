@@ -1,7 +1,7 @@
 
 export const emojisList = [
     "🎉", "🌈", "✨", "🌟", "🍕", "🍦", "🌴", "🏖️", 
-    "🎮", "🎶", "🎸", "🎯", "🏆", "🎁",
+    "👉",
     "🧸", "🐶", "🐱", "🐰", "🐭", "🐹", "🐯", "🐨", "🐻", "🐼",
     "🐷", "🐮", "🐸", "🐵", "🐔", "🐧", "🐦", "🐤", 
     "🦆", "🦅", "🦉", "🦜", "🐺", "🐗", "🐴", "🦄", 
@@ -25,7 +25,6 @@ export function textSplit(elem) {
 export function wordsSplit(elem) {
     return new SplitType(elem, { types: "words" })
 }
-
 
 export function disableScroll() {
     // console.log('disableScroll')

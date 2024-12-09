@@ -1,7 +1,8 @@
 
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v5/min/js/config.min.js";
+// import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v5/min/js/CONFIG.jsPostFix.js";
+import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v6/min/js/CONFIG.jsPostFix.min.js";
 
-const { textSplit, wordsSplit, emojisList } = await import(`${CONFIG.path}${CONFIG.jsPath}utilities${CONFIG.min}.js`);
+const { textSplit, wordsSplit, emojisList } = await import(`${CONFIG.path}${CONFIG.jsFolder}utilities${CONFIG.jsPostFix}.js`);
 
 export const h1LoadInit = (container) => {
 

@@ -1,0 +1,44 @@
+body {
+    cursor: none;
+  }
+
+
+
+.btn:hover {
+    animation: neonPulse 1.5s infinite;
+    box-shadow: 0 0 20px var(--lighter-green);
+    /* text-shadow: 0 0 10px var(--lighter-green); */
+}
+
+@keyframes neonPulse {
+    0% {
+      box-shadow: 0 0 10px var(--lighter-green);
+    }
+    50% {
+      box-shadow: 0 0 20px var(--lighter-green), 0 0 30px var(--lighter-green);
+    }
+    100% {
+      box-shadow: 0 0 10px var(--lighter-green);
+    }
+}
+
+@media (max-width: 468px) {
+    .btn:hover {
+        box-shadow: 0 0 5px var(--lighter-green); /* Reduced box-shadow size for smaller screens */
+        animation: neonPulseSmall 1.5s infinite; /* Use a smaller pulse animation */
+    }
+
+    @keyframes neonPulseSmall {
+        0% {
+            box-shadow: 0 0 4px var(--lighter-green);
+        }
+        50% {
+            box-shadow: 0 0 8px var(--lighter-green), 0 0 15px var(--lighter-green);
+        }
+        100% {
+            box-shadow: 0 0 4px var(--lighter-green);
+        }
+    }
+}
+  
+
