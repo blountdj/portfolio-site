@@ -14,11 +14,11 @@ export const CONFIG_DEV = {
 /* Prod */
 export const CONFIG_PROD = {
   barbaDebug: false,
-  path: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v16/',
+  path: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v17/',
   jsFolder: 'dist/js/',
   jsURLFolder: 'dist/js/',
   jsPostFix: '.min',
   cssFolder: 'dist/',
-  cssPath: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v16/',
+  cssPath: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v17/',
   cssPostFix: '.min'
 };

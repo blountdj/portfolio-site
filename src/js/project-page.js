@@ -1,7 +1,7 @@
 // console.log('project-page.js')
 
 // import { CONFIG_DEV } from "./config.js";
-import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v16/dist/js/config.min.js";
+import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v17/dist/js/config.min.js";
 
 const CONFIG = CONFIG_PROD
 
@@ -216,7 +216,7 @@ export const projectPageAnimate = (container) => {
             // .add(() => addH1HoverAnimations(h1Chars), 3)
             .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 3)
             .add(() => addDarrenH2Animations(project.darrenH2), 3)
-            // .add(() => imageStationaryAnimation(thumbNails), 3)
+        // .add(() => imageStationaryAnimation(thumbNails), 3)
     } else {
         gsap.timeline()
 

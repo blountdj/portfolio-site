@@ -1,7 +1,7 @@
 // console.log('barbaInit.js loaded')
 
 // import { CONFIG_DEV } from "./config.js";
-import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v16/dist/js/config.min.js";
+import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v17/dist/js/config.min.js";
 
 const CONFIG = CONFIG_PROD
 
@@ -34,9 +34,6 @@ const portfolioCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/portfolio${
 const projectsCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/project-page${CONFIG.cssPostFix}.css`
 const aboutCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/about${CONFIG.cssPostFix}.css`
 const contactCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/contact${CONFIG.cssPostFix}.css`
-
-const waveEffectJsFileUrl = `${CONFIG.cssPath}${CONFIG.jsURLFolder}wave-effect${CONFIG.jsPostFix}.js`
-const waveEffectMinJsFileUrl = `${CONFIG.cssPath}${CONFIG.jsURLFolder}dat.gui.min.js`
 
 
 const animationFadeInEnter = ((container) => {
