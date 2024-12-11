@@ -14,7 +14,7 @@ export const CONFIG_DEV = {
 /* Prod */
 export const CONFIG_PROD = {
   barbaDebug: false,
-  path: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v24/',
+  path: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v25/',
   // jsFolder: 'src/js/',
   // jsURLFolder: 'src/js/',
   jsFolder: 'dist/js/',
@@ -22,6 +22,6 @@ export const CONFIG_PROD = {
   jsPostFix: '.min',
   // jsPostFix: '',
   cssFolder: 'dist/',
-  cssPath: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v24/',
+  cssPath: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v25/',
   cssPostFix: '.min'
 };
