@@ -1,6 +1,8 @@
 
-// import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v15/dist/js/config.js";
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v15/dist/js/config.min.js";
+// import { CONFIG_DEV } from "./config.js";
+import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v16/dist/js/config.min.js";
+
+const CONFIG = CONFIG_PROD
 
 const { textSplit, wordsSplit, emojisList } = await import(`${CONFIG.path}${CONFIG.jsFolder}utilities${CONFIG.jsPostFix}.js`);
 
@@ -84,6 +86,18 @@ export const yPercentOpacityReturn = (elem) => {
         opacity: 1,
         duration: 0.6,
         ease: 'power3.inout',
+    })
+}
+
+export const yPercentOpacityReturnStagger = (elem) => {
+    gsap.to(elem, {
+        yPercent: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power3.inout',
+        stagger: {
+            each: 0.075,
+        },
     })
 }
 
@@ -224,6 +238,28 @@ export const imageStationaryAnimation = (elems) => {
         });
     }
 };
+
+
+export const unBlurOpacity1 = (elems) => {
+    gsap.to(elems, {
+        filter: "blur(0px)",
+        opacity: 1,
+        duration: 0.75,
+        ease: 'power1.inOut',
+    })
+}
+
+export const unBlurOpacity1Stagger = (elems) => {
+    gsap.to(elems, {
+        filter: "blur(0px)",
+        opacity: 1,
+        duration: 0.75,
+        ease: 'power1.inOut',
+        stagger: {
+            each: 0.075,
+        },
+    })
+}
 
 
 /* Transition Animation */

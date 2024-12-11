@@ -1,7 +1,9 @@
 // console.log('portfolio.js')
 
-// import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v15/dist/js/config.js";
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v15/dist/js/config.min.js";
+// import { CONFIG_DEV } from "./config.js";
+import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v16/dist/js/config.min.js";
+
+const CONFIG = CONFIG_PROD
 
 const {
   h1LoadInit,
@@ -28,6 +30,7 @@ const portfolio = {
   prevArrow: null,
   nextArrow: null,
   hamburger: null,
+  itemTitles: null,
 }
 
 export function portfolioInit(container) {
@@ -42,6 +45,7 @@ export function portfolioInit(container) {
   portfolio.prevArrow = container.querySelector('.prev');
   portfolio.nextArrow = container.querySelector('.next');
   portfolio.hamburger = container.querySelector('.hamburger');
+  portfolio.itemTitles = container.querySelectorAll('.item-title');
 
   portfolio.items.forEach((item, index) => {
     if (index === current) return;
@@ -49,7 +53,7 @@ export function portfolioInit(container) {
     gsap.set(item, {
       translateX: "100vw",
       opacity: 0,
-      rotate: 40
+      rotate: 40,
     });
 
   });
@@ -59,12 +63,22 @@ export function portfolioInit(container) {
     opacity: 1,
   });
 
+  gsap.set(portfolio.items[!current], {
+    translateX: "100vw",
+    opacity: 0,
+  });
+
   gsap.set(portfolio.portfolioTextWrapper, {
     scaleX: 0,
   })
 
   gsap.set(portfolio.darrenH2, {
     yPercent: -105,
+    opacity: 0,
+  })
+
+  gsap.set(portfolio.itemTitles, {
+    yPercent: 105,
     opacity: 0,
   })
 
@@ -131,16 +145,18 @@ export function portfolioAnimate(container) {
     // .add(() => arrowAnimations(container), 3)
     .add(() => imageStationaryAnimation(itemCards), 3)
     .add(() => imageHoverAnimation(container), 3)
-    .add(() => portfolio.nextArrow.addEventListener("click", () => next(portfolio.items)), 3)
-    .add(() => portfolio.prevArrow.addEventListener("click", () => prev(portfolio.items)), 3)
+    .add(() => portfolio.nextArrow.addEventListener("click", () => next(portfolio.items, portfolio.itemTitles)), 3)
+    .add(() => portfolio.prevArrow.addEventListener("click", () => prev(portfolio.items, portfolio.itemTitles)), 3)
     .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 3)
+    .add(() => yPercentOpacityReturn(portfolio.itemTitles[0]), 3)
 }
 
 const animate = {
-  in(item) {
+  in(item, itemTitle) {
     gsap.set(item, {
       translateX: directionForward ? "100vw" : "-100vw",
       rotate: directionForward ? 40 : -40,
+      display: "flex",
     })
     gsap.to(item, {
       opacity: 1,
@@ -149,15 +165,32 @@ const animate = {
       duration: 1,
       ease: "power4.inOut",
     })
+    gsap.to(itemTitle, {
+      opacity: 1,
+      yPercent: 0,
+      duration: 0.3,
+      delay: 0.75,
+      ease: "power4.inOut",
+    })
   },
 
-  out(item) {
+  out(item, itemTitle) {
     gsap.to(item, {
       opacity: 0,
       translateX: directionForward ? "-100vw" : "100vw",
       rotate: directionForward ? -40 : 40,
       duration: 1,
       ease: "power4.inOut",
+      onComplete: () => {
+        gsap.set(item, {
+          display: "none",
+        })
+      }
+    })
+    gsap.to(itemTitle, {
+      opacity: 0,
+      yPercent: 105,
+      delay: 0.75,
     })
   },
 };
@@ -172,27 +205,27 @@ function updateClasses(items) {
   });
 }
 
-function next(items) {
+function next(items, itemTitles) {
 
   if (!directionForward) {
     directionForward = !directionForward;
   }
-  animate.out(items[current]);
+  animate.out(items[current], itemTitles[current]);
   current = (current + 1) % items.length;
   setTimeout(function () {
-    animate.in(items[current]);
+    animate.in(items[current], itemTitles[current]);
   }, 500); // <-- Change the delay here
   updateClasses(items);
 }
 
-function prev(items) {
+function prev(items, itemTitles) {
   if (directionForward) {
     directionForward = !directionForward;
   }
-  animate.out(items[current]);
+  animate.out(items[current], itemTitles[current]);
   current = (current - 1 + items.length) % items.length;
   setTimeout(function () {
-    animate.in(items[current]);
+    animate.in(items[current], itemTitles[current]);
   }, 500); // <-- Change the delay here
   updateClasses(items);
 }

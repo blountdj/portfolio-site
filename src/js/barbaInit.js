@@ -1,6 +1,9 @@
 // console.log('barbaInit.js loaded')
 
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v15/dist/js/config.min.js";
+// import { CONFIG_DEV } from "./config.js";
+import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v16/dist/js/config.min.js";
+
+const CONFIG = CONFIG_PROD
 
 const { hamburgerInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}hamburger${CONFIG.jsPostFix}.js`);
 const { menuInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}menu${CONFIG.jsPostFix}.js`);
@@ -9,6 +12,9 @@ const { homeInit, homeAnimate } = await import(`${CONFIG.path}${CONFIG.jsFolder}
 const { projectPageAnimate, projectPageInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}project-page${CONFIG.jsPostFix}.js`);
 const { aboutInit, aboutAnimations } = await import(`${CONFIG.path}${CONFIG.jsFolder}about${CONFIG.jsPostFix}.js`);
 const { contactInit, contactAnimations } = await import(`${CONFIG.path}${CONFIG.jsFolder}contact${CONFIG.jsPostFix}.js`);
+const { waveEffectInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}wave-effect${CONFIG.jsPostFix}.js`);
+
+
 
 const {
     addFilesCssToBody,
@@ -25,9 +31,12 @@ const {
 
 const homeCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/home${CONFIG.cssPostFix}.css`
 const portfolioCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/portfolio${CONFIG.cssPostFix}.css`
-const projectsCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/project-page.min${CONFIG.cssPostFix}.css`
-const aboutCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/about.min${CONFIG.cssPostFix}.css`
-const contactCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/contact.min${CONFIG.cssPostFix}.css`
+const projectsCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/project-page${CONFIG.cssPostFix}.css`
+const aboutCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/about${CONFIG.cssPostFix}.css`
+const contactCssFileUrl = `${CONFIG.cssPath}${CONFIG.cssFolder}css/contact${CONFIG.cssPostFix}.css`
+
+const waveEffectJsFileUrl = `${CONFIG.cssPath}${CONFIG.jsURLFolder}wave-effect${CONFIG.jsPostFix}.js`
+const waveEffectMinJsFileUrl = `${CONFIG.cssPath}${CONFIG.jsURLFolder}dat.gui.min.js`
 
 
 const animationFadeInEnter = ((container) => {
@@ -85,6 +94,8 @@ barba.hooks.beforeEnter((data) => {
     // console.log('## BEFORE ENTER')
     const nextPageId = data.next.namespace;
 
+    waveEffectInit(data.next.container)
+
     if (nextPageId === 'home') {
         homeInit(data.next.container)
     } else if (nextPageId === 'portfolio') {
@@ -97,8 +108,10 @@ barba.hooks.beforeEnter((data) => {
         aboutInit(data.next.container)
     }
 
+
     hamburgerInit(data.next.container)
     menuInit(data.next.container)
+
 });
 
 barba.hooks.once(async (data) => {

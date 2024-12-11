@@ -1,7 +1,9 @@
 // console.log('project-page.js')
 
-// import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v15/dist/js/config.js";
-import { CONFIG } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v15/dist/js/config.min.js";
+// import { CONFIG_DEV } from "./config.js";
+import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v16/dist/js/config.min.js";
+
+const CONFIG = CONFIG_PROD
 
 const {
     h1LoadInit,
@@ -18,6 +20,35 @@ const {
     imageStationaryAnimation
 } = await import(`${CONFIG.path}${CONFIG.jsFolder}commonAnimations${CONFIG.jsPostFix}.js`);
 
+
+/* INCOMPLETE */
+// const getImageUrl = (pageName) => {
+//     const screenWidth = window.innerWidth;
+//     const imageSize = screenWidth > 991 ? 'large' : 'small';
+
+//     const imagesDict = {
+//         'designo': {
+//             'large': {
+//                 'Desktop Home Page Hero Section': 'shooting.jpg',
+//                 'Tablet Home Page Hero Section': 'https://cdn.prod.website-files.com/672d4ae3adf0bed6be877464/6731e1db8584833139cb52dc_designo2.avif',
+//                 'Mobile Home Page Hero Section': 'arch-studio.jpg',
+//                 'Desktop Home Page Footer Section': 'audiophile.jpg',
+//                 'Desktop Locations Page': 'audiophile.jpg',
+//                 'Desktop Contact Page': 'audiophile.jpg',
+//             },
+//             'small': {
+//                 'Desktop Home Page Hero Section': 'https://cdn.prod.website-files.com/672d4ae3adf0bed6be877464/675711f95f90804335a8df7f_designo-small.avif',
+//                 'Tablet Home Page Hero Section': 'https://cdn.prod.website-files.com/672d4ae3adf0bed6be877464/6731e1db8584833139cb52dc_designo2.avif',
+//                 'Mobile Home Page Hero Section': 'arch-studio.jpg',
+//                 'Desktop Home Page Footer Section': 'audiophile.jpg',
+//                 'Desktop Locations Page': 'audiophile.jpg',
+//                 'Desktop Contact Page': 'audiophile.jpg',
+//             }
+//         }
+//     }
+
+//     return imagesDict[pageName][imageSize][sectionName]
+// }
 
 const project = {
     items: null,
@@ -185,7 +216,7 @@ export const projectPageAnimate = (container) => {
             // .add(() => addH1HoverAnimations(h1Chars), 3)
             .add(() => setInterval(() => h1ShineEffect(h1Chars), 10000), 3)
             .add(() => addDarrenH2Animations(project.darrenH2), 3)
-            .add(() => imageStationaryAnimation(thumbNails), 3)
+            // .add(() => imageStationaryAnimation(thumbNails), 3)
     } else {
         gsap.timeline()
 

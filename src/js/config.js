@@ -1,22 +1,24 @@
-export const CONFIG = {
+
+/* Dev */
+export const CONFIG_DEV = {
+  barbaDebug: true,
+  path: './',
+  jsFolder: '',
+  jsPostFix: '',
+  cssFolder: 'src/',
+  jsURLFolder: 'src/js/',
+  cssPath: 'https://192.168.1.131:5500/',
+  cssPostFix: ''
+};
+
+/* Prod */
+export const CONFIG_PROD = {
   barbaDebug: false,
-  // path: './',
-  path: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v15/',
-  // pathAdd: 'src/js/',
-  // jsFolder: '',
-  // jsFolder: '',
+  path: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v16/',
   jsFolder: 'dist/js/',
-  // jsFolder: 'src/js/',
-  // jsPostFix: '',
+  jsURLFolder: 'dist/js/',
   jsPostFix: '.min',
-  // pathCss: '',
-  // pathCss: 'dist/css/',
-  // folder: 'dist/',
   cssFolder: 'dist/',
-  // cssFolder: 'src/',
-  // jsPostFix: '',
-  cssPath: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v15/',
-  // cssPath: 'https://192.168.1.131:5500/',
+  cssPath: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v16/',
   cssPostFix: '.min'
-  // cssPostFix: ''
 };

@@ -39,6 +39,7 @@ export function enableScroll() {
 }
 
 export function removeScriptFromBody(srcUrl) {
+    console.log('removeScriptFromBody')
     const bodyScripts = document.body.getElementsByTagName('script');
     for (let i = bodyScripts.length - 1; i >= 0; i--) {
       if (bodyScripts[i].src && bodyScripts[i].src.includes(srcUrl)) {
@@ -48,6 +49,7 @@ export function removeScriptFromBody(srcUrl) {
 }
 
 export function addScriptToBody(srcUrl) {
+    console.log('addScriptToBody')
     const script = document.createElement('script');
     script.src = srcUrl;
     script.type = 'module';

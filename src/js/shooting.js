@@ -123,6 +123,14 @@ export const shootingEffect = () => {
         display: "flex",
     });
 
+    function closeOverlay() {
+        gsap.to(overlay, {
+            autoAlpha: 0,
+            duration: 0.5,
+            ease: "power4.inOut",
+        });
+    }
+
     const colours = ["var(--darker-green)", "var(--lighter-green)", "var(--snow)"];
     let score = 0;
 
@@ -179,11 +187,12 @@ export const shootingEffect = () => {
                 
                 overlayCloseBtn.addEventListener('click', () => {
                     animationTimeline.resume();
-                    gsap.to(overlay, {
-                        autoAlpha: 0,
-                        duration: 0.5,
-                        ease: "power4.inOut",
-                    });
+                    closeOverlay()
+                    // gsap.to(overlay, {
+                    //     autoAlpha: 0,
+                    //     duration: 0.5,
+                    //     ease: "power4.inOut",
+                    // });
                 });
 
                 overlayGoBtn.addEventListener('click', () => {
@@ -192,9 +201,10 @@ export const shootingEffect = () => {
                     }
                   
                     isSubmitting = true;
-                  
+                    closeOverlay()
                     switch (clickTarget) {
                       case "portfolio":
+                        
                         barba.go("portfolio");
                         break;
                       case "about":
