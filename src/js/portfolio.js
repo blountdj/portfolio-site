@@ -1,7 +1,7 @@
 // console.log('portfolio.js')
 
 // import { CONFIG_DEV } from "./config.js";
-import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v19/dist/js/config.min.js";
+import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v20/dist/js/config.js";
 
 const CONFIG = CONFIG_PROD
 
@@ -19,7 +19,7 @@ const {
 } = await import(`${CONFIG.path}${CONFIG.jsFolder}commonAnimations${CONFIG.jsPostFix}.js`);
 
 
-let current = 0;
+let current;
 let directionForward = true;
 
 const portfolio = {
@@ -34,7 +34,9 @@ const portfolio = {
 }
 
 export function portfolioInit(container) {
-  // console.log('portfolioInit')
+  console.log('portfolioInit NOT MIN')
+
+  current = 0;
 
   h1LoadInit(container)
 
@@ -55,7 +57,6 @@ export function portfolioInit(container) {
       opacity: 0,
       rotate: 40,
     });
-
   });
 
   gsap.set(portfolio.items[current], {

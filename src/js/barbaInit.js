@@ -1,7 +1,7 @@
 // console.log('barbaInit.js loaded')
 
 // import { CONFIG_DEV } from "./config.js";
-import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v19/dist/js/config.min.js";
+import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v20/dist/js/config.js";
 
 const CONFIG = CONFIG_PROD
 
