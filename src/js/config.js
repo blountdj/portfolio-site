@@ -15,8 +15,10 @@ export const CONFIG_DEV = {
 export const CONFIG_PROD = {
   barbaDebug: false,
   path: 'https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v20/',
-  jsFolder: 'dist/js/',
-  jsURLFolder: 'dist/js/',
+  jsFolder: 'src/js/',
+  jsURLFolder: 'src/js/',
+  // jsFolder: 'dist/js/',
+  // jsURLFolder: 'dist/js/',
   // jsPostFix: '.min',
   jsPostFix: '',
   cssFolder: 'dist/',
