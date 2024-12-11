@@ -1,6 +1,6 @@
 
 // import { CONFIG_DEV } from "./config.js";
-import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v25/dist/js/config.min.js";
+import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v26/dist/js/config.min.js";
 
 const CONFIG = CONFIG_PROD
 
