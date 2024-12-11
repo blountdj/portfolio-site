@@ -1,14 +1,15 @@
 // console.log('barbaInit.js loaded')
 
 // import { CONFIG_DEV } from "./config.js";
-import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v23/dist/js/config.min.js";
-// import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v23/src/js/config.js";
+import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v24/dist/js/config.min.js";
+// import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v24/src/js/config.js";
 
 const CONFIG = CONFIG_PROD
 
 const { hamburgerInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}hamburger${CONFIG.jsPostFix}.js`);
 const { menuInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}menu${CONFIG.jsPostFix}.js`);
-const { portfolioInit, portfolioAnimate } = await import(`${CONFIG.path}${CONFIG.jsFolder}portfolio${CONFIG.jsPostFix}.js`);
+// const { portfolioInit, portfolioAnimate } = await import(`${CONFIG.path}${CONFIG.jsFolder}portfolio${CONFIG.jsPostFix}.js`);
+const { portfolioInit, portfolioAnimate } = await import(`${CONFIG.path}src/js/portfolio.js`);
 const { homeInit, homeAnimate } = await import(`${CONFIG.path}${CONFIG.jsFolder}home${CONFIG.jsPostFix}.js`);
 const { projectPageAnimate, projectPageInit } = await import(`${CONFIG.path}${CONFIG.jsFolder}project-page${CONFIG.jsPostFix}.js`);
 const { aboutInit, aboutAnimations } = await import(`${CONFIG.path}${CONFIG.jsFolder}about${CONFIG.jsPostFix}.js`);
