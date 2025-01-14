@@ -1,7 +1,7 @@
 // console.log('project-page.js')
 
 // import { CONFIG_DEV } from "./config.js";
-import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v27/dist/js/config.min.js";
+import { CONFIG_PROD } from "https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v29/dist/js/config.min.js";
 
 const CONFIG = CONFIG_PROD
 

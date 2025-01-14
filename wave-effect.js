@@ -803,7 +803,7 @@ let bloomFramebuffers = [];
 let sunrays;
 let sunraysTemp;
 
-let ditheringTexture = createTextureAsync('https://cdn.prod.website-files.com/672d4ae3adf0bed6be877464/675a0e97759e1d39ed22f031_LDR_LLL1_0.avif');
+let ditheringTexture = createTextureAsync('https://cdn.jsdelivr.net/gh/blountdj/portfolio-site@v29/LDR_LLL1_0.png');
 
 const blurProgram = new Program(blurVertexShader, blurShader);
 const copyProgram = new Program(baseVertexShader, copyShader);
@@ -991,6 +991,7 @@ function createTextureAsync(url) {
     };
 
     let image = new Image();
+    image.crossOrigin = "anonymous";
     image.onload = () => {
         obj.width = image.width;
         obj.height = image.height;
