@@ -1,5 +1,5 @@
 
-console.log('wave-effect')
+// console.log('wave-effect')
 
 'use strict';
 
@@ -803,7 +803,7 @@ let bloomFramebuffers = [];
 let sunrays;
 let sunraysTemp;
 
-let ditheringTexture = createTextureAsync('LDR_LLL1_0.png');
+let ditheringTexture = createTextureAsync('https://cdn.prod.website-files.com/672d4ae3adf0bed6be877464/675a0e97759e1d39ed22f031_LDR_LLL1_0.avif');
 
 const blurProgram = new Program(blurVertexShader, blurShader);
 const copyProgram = new Program(baseVertexShader, copyShader);
